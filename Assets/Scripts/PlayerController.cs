@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintRegenerationDelay = 1.0f; //Delay before Sprint regenerates
     [SerializeField] private float sprintRegenerationSpeed = 0.5f; //Sprint regained per second
 
-    private float sprint;           //How much sprint the Player has left
-    private float sprintCooldown;   //How long before sprint starts regenerating
+    [SerializeField] private float sprint;           //How much sprint the Player has left
+    [SerializeField] private float sprintCooldown;   //How long before sprint starts regenerating
 
     private Vector3 inputDirection;
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         if (inputDirection.magnitude > 1.0f) inputDirection = inputDirection / inputDirection.magnitude;    //Nerf diagonal movement
 
-        Vector3 movement = inputDirection * Time.deltaTime;
+        Vector3 movement = transform.TransformDirection(inputDirection) * Time.deltaTime;
 
         if (!isSprinting)                               //If Player is not holding Sprint
         {
