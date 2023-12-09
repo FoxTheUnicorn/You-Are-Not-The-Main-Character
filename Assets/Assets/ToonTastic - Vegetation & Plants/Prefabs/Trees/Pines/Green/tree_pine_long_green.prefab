@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074866957319071248}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.000000048083805, y: -0.5909441, z: -0.000000061054, w: 0.8067125}
   m_LocalPosition: {x: 0.009911537, y: 6.063019, z: 0}
   m_LocalScale: {x: 0.88370144, y: 0.8837016, z: 0.88370144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5297007266143183757}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1117635406813515272
 MeshFilter:
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 5297007266143183757}
   - component: {fileID: 492304590271926074}
   - component: {fileID: 2744080429699448601}
+  - component: {fileID: 975900133982299855}
   m_Layer: 0
   m_Name: tree_pine_long_green
   m_TagString: Untagged
@@ -108,6 +109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6831750827800342336}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -115,7 +117,6 @@ Transform:
   m_Children:
   - {fileID: 991636554709569725}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &492304590271926074
 MeshFilter:
@@ -167,3 +168,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &975900133982299855
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831750827800342336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4210050461109516506, guid: b7ff1d6db53a3da4c8044d84a43f8e3d, type: 3}
