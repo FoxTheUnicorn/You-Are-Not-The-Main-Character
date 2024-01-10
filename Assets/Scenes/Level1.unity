@@ -1780,7 +1780,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1093410426}
+    m_TransformParent: {fileID: 1571728360}
     m_Modifications:
     - target: {fileID: 2559116773944396281, guid: bef352b25cc7d42468167bb4bdbcdbcc, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -2664,7 +2664,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1847767873}
-  - {fileID: 723767813}
   m_Father: {fileID: 1551203132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1126494999
@@ -4178,6 +4177,7 @@ Transform:
   - {fileID: 1803501568}
   - {fileID: 651146461}
   - {fileID: 1654286869}
+  - {fileID: 723767813}
   m_Father: {fileID: 1551203132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1588588518
@@ -4860,7 +4860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4905,6 +4905,30 @@ PrefabInstance:
     - target: {fileID: 1245330195410350166, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082388202344638747, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
+      propertyPath: gravity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082388202344638747, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
+      propertyPath: sprintSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082388202344638747, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
+      propertyPath: terminalVelocity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293897881051826406, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
+      propertyPath: m_Center.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293897881051826406, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293897881051826406, guid: bb8bf8dda5f615d4ebf29dea91a6837f, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
