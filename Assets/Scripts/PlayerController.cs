@@ -9,18 +9,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintDuration = 5.0f; //Sprint duration in seconds
     [SerializeField] private float sprintRegenerationDelay = 1.0f; //Delay before Sprint regenerates
     [SerializeField] private float sprintRegenerationSpeed = 0.5f; //Sprint regained per second
+    [SerializeField] private bool applyGravity = true;
 
-    [SerializeField] private float vSpeed = 0;
-    [SerializeField] private float sprint;           //How much sprint the Player has left
+    [SerializeField] private float gravity = 0.2f;
+    [SerializeField] private float terminalVelocity = 2.0f;
+    [SerializeField] private float stamina;           //How much sprint the Player has left
     [SerializeField] private float sprintCooldown;   //How long before sprint starts regenerating
 
+    [SerializeField] private float vSpeed = 0.0f;
     private Vector3 inputDirection;
 
     private CharacterController controller;
     // Start is called before the first frame update
     void Start()
     {
-        sprint = sprintDuration;
+        stamina = sprintDuration;
         sprintCooldown = sprintRegenerationDelay;
         controller = GetComponent<CharacterController>();
     }
@@ -31,20 +34,42 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
     }
 
+    public bool PlayerIsMoving()
+    {
+        return inputDirection.magnitude > 0.1f;
+    }
+
     private void MovePlayer()
     {
         inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         bool isSprinting = Input.GetButton("Sprint");
+        if (controller.isGrounded)
+        {
+            vSpeed = 0;
+        }
 
-        if (inputDirection.magnitude < 0.1f)
+        if (!PlayerIsMoving())
         {
             regenerateSprint();
-            return;
         }
 
         if (inputDirection.magnitude > 1.0f) inputDirection = inputDirection / inputDirection.magnitude;    //Nerf diagonal movement
 
         Vector3 movement = transform.TransformDirection(inputDirection) * Time.deltaTime;
+        if(applyGravity)
+        {
+            if (controller.isGrounded) vSpeed = 0;
+            else
+            {
+                vSpeed -= gravity * Time.deltaTime;
+                if (vSpeed < -terminalVelocity)
+                {
+                    vSpeed = -terminalVelocity;
+                }
+            }
+            movement.y = vSpeed;
+        }
+
 
         if (!isSprinting)                               //If Player is not holding Sprint
         {
@@ -53,10 +78,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (sprint > 0.0f)                              //If Player is holding Sprint an
+        if (stamina > 0.0f)                              //If Player is holding Sprint but doesnt have stamina
         {
             sprintCooldown = sprintRegenerationDelay;
-            sprint -= Time.deltaTime;
+            stamina -= Time.deltaTime;
             controller.Move(movement * sprintSpeed);
         }
         else                                            //If Player has no Sprint left
@@ -66,7 +91,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void regenerateSprint() {
-        if (sprint == sprintDuration) return;                   //Not used any sprint
+        if (stamina == sprintDuration) return;                   //Not used any sprint
 
         if (sprintCooldown > 0.0f)                             //If sprint regeneration is still on cooldown
         {
@@ -74,16 +99,16 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (sprint < 0.0f) sprint = 0.0f;                       //If over exhausted
+        if (stamina < 0.0f) stamina = 0.0f;                       //If over exhausted
 
-        sprint += sprintRegenerationSpeed * Time.deltaTime;
+        stamina += sprintRegenerationSpeed * Time.deltaTime;
 
-        if (sprint > sprintDuration) sprint = sprintDuration;   //If over regenerated
+        if (stamina > sprintDuration) stamina = sprintDuration;   //If over regenerated
     }
 
     public void regainSprint()
     {
-        sprint = sprintDuration;
+        stamina = sprintDuration;
     }
 
     public void setSprintDuration(float duration)
