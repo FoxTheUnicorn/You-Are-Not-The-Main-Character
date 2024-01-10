@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintRegenerationDelay = 1.0f; //Delay before Sprint regenerates
     [SerializeField] private float sprintRegenerationSpeed = 0.5f; //Sprint regained per second
 
+    [SerializeField] private float vSpeed = 0;
     [SerializeField] private float sprint;           //How much sprint the Player has left
     [SerializeField] private float sprintCooldown;   //How long before sprint starts regenerating
 
