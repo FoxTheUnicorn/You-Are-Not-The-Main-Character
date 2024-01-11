@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform EnemySpawnerParent;
     [SerializeField] private List<EnemySpawner> EnemySpawnerList = new List<EnemySpawner>();
     [SerializeField] private List<EnemyWave> Waves = new List<EnemyWave>();
-
+    [SerializeField] private float SpawnInterval = 1.0f;
 
     [SerializeField] private EnemyWave currentWave;
 
@@ -27,13 +27,12 @@ public class GameController : MonoBehaviour
 
     public void StartWave(int wave)
     {
-        inWave = true;
         currentWave = new EnemyWave(Waves[wave-1]);
     }
 
     private void StartGameLoop()
     {
-        InvokeRepeating("GameLoop", 0.0f, 0.5f);
+        InvokeRepeating("GameLoop", 0.0f, SpawnInterval);
     }
 
     private void StopGameLoop()
@@ -45,10 +44,11 @@ public class GameController : MonoBehaviour
     {
         foreach (EnemySpawner eSpawn in EnemySpawnerList)
         {
-            GameObject enemy = GetEnemyFromCurrentWave();
+            GameObject enemy = GetEnemyType();
             if(enemy != null)
             {
-                eSpawn.SpawnEnemy(enemy, Player);
+                bool val = eSpawn.SpawnEnemy(enemy, Player);
+                if (val) SuccessfulSpawn();
             }
             else
             {
@@ -58,16 +58,20 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private GameObject GetEnemyFromCurrentWave()
+    private GameObject GetEnemyType()
     {
         if (currentWave.Enemies.Count == 0) return null;
-        GameObject EnemyType = currentWave.Enemies[0].EnemyType;
+        return currentWave.Enemies[0].EnemyType;
+    }
+
+    private void SuccessfulSpawn()
+    {
+        if (currentWave.Enemies.Count == 0) return;
         currentWave.Enemies[0].Spawn();
-        if (currentWave.Enemies[0].GetRemainingSpawns() < 0)
+        if (currentWave.Enemies[0].GetRemainingSpawns() <= 0)
         {
             currentWave.Enemies.RemoveAt(0);
         }
-        return EnemyType;
     }
 
     private void ResolveEnemySpawners()
@@ -82,11 +86,12 @@ public class GameController : MonoBehaviour
     class EnemyWave {
         public List<EnemyWaveEntry> Enemies;
 
-        public EnemyWave(EnemyWave EnemyWave)
+        public EnemyWave(EnemyWave EnemyWave)   //Copy Constructor
         {
-            this.Enemies = EnemyWave.Enemies;
+            this.Enemies = new List<EnemyWaveEntry>(EnemyWave.Enemies);
         }
-        public EnemyWave(List<EnemyWaveEntry> enemies)
+
+        public EnemyWave(List<EnemyWaveEntry> enemies) 
         {
             this.Enemies = enemies;
         }
@@ -97,11 +102,17 @@ public class GameController : MonoBehaviour
     {
         public GameObject EnemyType;
         [Range(1, 50)] public int Amount;
-        private int Spawned;
-        public EnemyWaveEntry(GameObject EnemyType, int Amount)
+        [SerializeField] private int Spawned;
+        public EnemyWaveEntry(GameObject EnemyType, int Amount) 
         {
             this.EnemyType = EnemyType;
             this.Amount = Amount;
+            this.Spawned = 0;
+        }
+        public EnemyWaveEntry(EnemyWaveEntry entry) //Copy Constructor
+        {
+            this.EnemyType = entry.EnemyType;
+            this.Amount = entry.Amount;
             this.Spawned = 0;
         }
 

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform enemyParentGameObject;  
     [SerializeField] private Transform spawnLocation;           //The actual Spawn Location of the Enemies
     [SerializeField] private Vector3 spread;                    //Random area around the spawnLocation where Enemies can spawn
-    [SerializeField] private float minDistanceToPlayer = 4.0f;  //The minimum distance to the Player to Spawn an Enemy
+    [SerializeField] private float minDistanceToPlayer = 20.0f;  //The minimum distance to the Player to Spawn an Enemy
     [SerializeField] private float spawnCooldown = 8.0f;        //Time before spawner may spawn another Enemy
 
     private float cooldownTimer = 0.0f;
