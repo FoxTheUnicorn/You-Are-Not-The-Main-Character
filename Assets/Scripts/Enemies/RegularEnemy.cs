@@ -17,4 +17,9 @@ public class RegularEnemy : MonoBehaviour {
         DeathParticles.Play();
         EnemyRigidbody.freezeRotation = false;
     }
+
+    public void KillObject()
+    {
+       this.gameObject.
+    }
 }
