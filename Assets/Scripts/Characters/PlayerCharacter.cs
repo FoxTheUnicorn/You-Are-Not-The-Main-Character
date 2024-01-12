@@ -12,8 +12,7 @@ public class PlayerCharacter : MonoBehaviour, Character
     {
         registerCharacterManager();
         characterManager.registerCharacter(this);
-        enemyList = characterManager.getEnemyCharacterList(this);
-        setEnemyList(enemyList);
+        setEnemyList(characterManager.getEnemyCharacterList(this));
     }
 
     // Update is called once per frame

@@ -14,8 +14,7 @@ public abstract class NPCCharacter : Navigation, Character
         base.setOwnCharacterReference(this);
         registerCharacterManager();
         characterManager.registerCharacter(this);
-        enemyList = characterManager.getEnemyCharacterList(this);
-        setEnemyList(enemyList);
+        setEnemyList(characterManager.getEnemyCharacterList(this));
     }
 
     // Update is called once per frame
