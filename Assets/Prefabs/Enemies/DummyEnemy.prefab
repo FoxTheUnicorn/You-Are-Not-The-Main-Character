@@ -243,7 +243,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -5055,3 +5055,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DespawnTime: 4
+  DeathParticlesPeak: 0.25
