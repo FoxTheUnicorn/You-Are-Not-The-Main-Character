@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Navigation : MonoBehaviour
+public abstract class Navigation : MonoBehaviour
 {
     private const int TARGETSETTINGINACTIVE = 0;
     private const int SETTINGTARGETWITHINRECTANGLE = 1;
     private const int SETTINGTARGETWITHINELLIPSE = 2;
     private const int TARGETSETTINGPENDING = 3;
+    private const int ENEMYTARGET = 4;
 
     private const int WANDERINGAROUNDAIMLESSLYINACTIVE = 0;
     private const int WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE = 1;
@@ -21,9 +22,11 @@ public class Navigation : MonoBehaviour
     private float randomX1, randomZ1, randomX2, randomZ2;
     private int statusTargetSetting = TARGETSETTINGINACTIVE, statusWanderingAroundAimlessly = WANDERINGAROUNDAIMLESSLYINACTIVE;
     private float restingTimeMin = 0.5f, restingTimeMax = 1.5f;
+    private List<Character> enemyList = new List<Character>();
+    private Character ownCharacter = null;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         floorBounds = boden.GetComponent<Renderer>().bounds;
 
@@ -31,17 +34,22 @@ public class Navigation : MonoBehaviour
         startWanderingAroundAimlesslyWithinEllipse(-145.4f, 0f, 10f, 15f);
     }
 
-    void setWalkingSpeed(float speed)
+    public void setOwnCharacterReference(Character ownCharacterReference)
+    {
+        ownCharacter = ownCharacterReference;
+    }
+
+    public void setWalkingSpeed(float speed)
     {
         navMeshAgent.speed = speed;
     }
 
-    float getWalkingSpeed()
+    public float getWalkingSpeed()
     {
         return navMeshAgent.speed;
     }
 
-    void setRestingTime(float timeMin, float timeMax)
+    public void setRestingTime(float timeMin, float timeMax)
     {
         restingTimeMin = timeMin;
         restingTimeMax = timeMax;
@@ -49,7 +57,7 @@ public class Navigation : MonoBehaviour
 
     private void setRandomTargetWithinRectangleInternal()
     {
-        Vector3 targetLocation = new Vector3(randomX1 + Random.Range(0f, 1f) *(randomX2 - randomX1), 0f, randomZ1 + Random.Range(0f, 1f) *(randomZ2 - randomZ1));
+        Vector3 targetLocation = new Vector3(randomX1 + Random.Range(0f, 1f) * (randomX2 - randomX1), 0f, randomZ1 + Random.Range(0f, 1f) * (randomZ2 - randomZ1));
         navMeshAgent.SetDestination(targetLocation);
         if (targetLocation.x < navMeshAgent.destination.x - 0.001f || targetLocation.x > navMeshAgent.destination.x + 0.001f || targetLocation.z < navMeshAgent.destination.z - 0.001f || targetLocation.z > navMeshAgent.destination.z + 0.001f)
         {
@@ -71,7 +79,8 @@ public class Navigation : MonoBehaviour
         float radiusZ = centerZ - randomZ1;
         float radiusZCorrection = radiusX / radiusZ;
         Vector3 targetLocation;
-        do {
+        do
+        {
             targetLocation = new Vector3(randomX1 + Random.Range(0f, 1f) * (randomX2 - randomX1), 0f, randomZ1 + Random.Range(0f, 1f) * (randomZ2 - randomZ1));
         }
         while (((targetLocation.x - centerX) * (targetLocation.x - centerX) + (targetLocation.z - centerZ) * (targetLocation.z - centerZ) * radiusZCorrection * radiusZCorrection) > radiusX * radiusX);
@@ -140,7 +149,12 @@ public class Navigation : MonoBehaviour
         setRandomTargetWithinEllipseInternal();
     }
 
-    void Update()
+    public void setEnemyList(List<Character> newList)
+    {
+        enemyList = newList;
+    }
+
+    public virtual void Update()
     {
         if (statusTargetSetting == SETTINGTARGETWITHINRECTANGLE)
             setRandomTargetWithinRectangleInternal();
@@ -155,5 +169,9 @@ public class Navigation : MonoBehaviour
             else
                 Invoke("setRandomTargetWithinEllipseInternal", 10f);
         }
+    }
+
+    public virtual void FixedUpdate()
+    {
     }
 }

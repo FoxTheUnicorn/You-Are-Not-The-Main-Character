@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 590384880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621de91c31aba2a4188d3d587853d982, type: 3}
+  m_Script: {fileID: 11500000, guid: 26cb3d56805187b4f82cb6f74f2f3cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 590384883}
@@ -4461,8 +4461,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2115818173}
+  - component: {fileID: 2115818174}
   m_Layer: 0
-  m_Name: Held
+  m_Name: CharacterManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4484,6 +4485,18 @@ Transform:
   - {fileID: 590384881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115818174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115818172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3428fa78e501c44449ad0451fa2e652c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119247383
 GameObject:
   m_ObjectHideFlags: 0
