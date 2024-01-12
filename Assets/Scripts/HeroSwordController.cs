@@ -10,14 +10,14 @@ public class HeroSwordController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Enter");
         if (!other.gameObject.CompareTag("Enemy")) return;
         Rigidbody EnemyRigidbody = other.GetComponent<Rigidbody>();
         Vector3 direction = HeroPosition.position - other.transform.position;
         direction.y = 0.0f;
         direction = -direction.normalized;
         direction.y = KnockbackUpForce;
-        Debug.Log("Applying Knockback: " + direction);
         EnemyRigidbody.AddForce(direction * KnockbackForce);
+        RegularEnemy enemy = other.GetComponent<RegularEnemy>();
+        enemy.EnemyStruck();
     }
 }

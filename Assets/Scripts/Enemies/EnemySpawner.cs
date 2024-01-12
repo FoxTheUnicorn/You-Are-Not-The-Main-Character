@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistanceToPlayer = 20.0f;  //The minimum distance to the Player to Spawn an Enemy
     [SerializeField] private float spawnCooldown = 8.0f;        //Time before spawner may spawn another Enemy
 
-    private float cooldownTimer = 0.0f;
+    private bool OnCooldown = false;
 
     public void Start()
     {
@@ -26,23 +26,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void Update()
     {
-        CooldownTimerRoutine();
     }
 
     public void ResetCooldown()
     {
-        cooldownTimer = 0.0f;
-    }
-    private void CooldownTimerRoutine()
-    {
-        if (cooldownTimer < 0.0f)
-        {
-            cooldownTimer = 0.0f;
-        }
-        else
-        {
-            cooldownTimer -= Time.deltaTime;
-        }
+        OnCooldown = false;
     }
 
     public float DistanceFromObject(GameObject obj)
@@ -50,11 +38,18 @@ public class EnemySpawner : MonoBehaviour
         return (obj.transform.position - this.transform.position).sqrMagnitude;
     }
 
+    public void StartCooldown()
+    {
+        OnCooldown = true;
+        Invoke("ResetCooldown", spawnCooldown);
+    }
     public bool SpawnEnemy(GameObject prefab, GameObject player)
     {
         //If spawner still on cooldown or player to close to enemy
-        if (cooldownTimer > 0.0f) return false;
+        if (OnCooldown) return false;
         if (DistanceFromObject(player) < minDistanceToPlayer) return false;
+
+        StartCooldown();
 
         Vector3 spawnPosition = spawnLocation.position + RandomVector3Range(spread, -spread);
         GameObject inst = Instantiate(prefab, spawnPosition, Quaternion.identity);
