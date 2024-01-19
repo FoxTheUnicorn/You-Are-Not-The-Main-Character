@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Hosting;
+//using System.Runtime.Hosting;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenue : MonoBehaviour
 {
-    public GameObject PauseMenue;
+    //Commented it out since it threw a bunch of errors
+/*    public GameObject PauseMenue;
     public static bool IsPaused;
     
     // Start is called before the first frame update
@@ -56,5 +57,5 @@ public class PauseMenue : MonoBehaviour
     {
         Application.Quit();
     }
-
+*/
 }
