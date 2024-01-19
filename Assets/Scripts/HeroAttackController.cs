@@ -8,8 +8,6 @@ public class HeroAttackController : MonoBehaviour
     [SerializeField] bool onCooldown = false;
     [SerializeField] float SpinCooldown = 3.0f;
 
-    private float SpinTimer = 0.0f;
-
     public void StartSpin()
     {
         Invoke("ResetCooldown", SpinCooldown);
