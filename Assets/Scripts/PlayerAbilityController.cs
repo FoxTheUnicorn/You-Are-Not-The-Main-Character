@@ -53,7 +53,11 @@ public class PlayerAbilityController : MonoBehaviour
         if (!ability.IsOnCooldown())
         {
             ability.AbilityCooldown();
-            //TODO Ability1 Effect
+            Vector3 TargetPosition = transform.position;
+            TargetPosition.y = 0;
+            GameObject spell = Instantiate(ability.SpellObject, TargetPosition, Quaternion.identity, transform);
+            spell.transform.localScale = new Vector3(2, 2, 2);
+
         }
     }    
 

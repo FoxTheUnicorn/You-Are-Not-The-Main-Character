@@ -258,6 +258,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76eda50b9a8ef946b77456b4efc9322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilities:
+  - UIAbility: {fileID: 0}
+    Cooldown: 15
+    SpellObject: {fileID: 0}
+  - UIAbility: {fileID: 0}
+    Cooldown: 2
+    SpellObject: {fileID: 5854562923384179646, guid: 83c06f8445ff6a749816793b1f188661, type: 3}
+  - UIAbility: {fileID: 0}
+    Cooldown: 40
+    SpellObject: {fileID: 6336944341254729064, guid: cea49deda527eff4294efeef7b4ada83, type: 3}
+  SpellCollection: {fileID: 0}
 --- !u!1 &8997094504577135865
 GameObject:
   m_ObjectHideFlags: 0
