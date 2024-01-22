@@ -27,6 +27,7 @@ public class HeldNavigation : MonoBehaviour
     private float schadenAnzeigenZaehler = 0;
     public Camera kamera;
     public GameObject zielObjekt;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -92,12 +93,15 @@ public class HeldNavigation : MonoBehaviour
             }
             if (minAbstand <= schlagRadius)
             {
+                navMeshAgent.SetDestination(anzugreifenderGegner.transform.position);
                 angriffsSperreFramesZaehler = (int)Random.Range(schlagSperreFramesMin, schlagSperreFramesMax);
                 if (anzugreifenderGegner.schadenZufuegen(Random.Range(angriffsSchadenMin, angriffsSchadenMax)))
                 {
                     gegnerListe.Remove(anzugreifenderGegner);
                     Destroy(anzugreifenderGegner.transform.gameObject);
                 }
+                anim.SetBool("Attack", true);
+                Invoke("attackeBeenden", 1.2f);
                 heldHatZiel = false;
                 fehlgeschlagen = true;
                 navMeshAgent.isStopped = true;
@@ -114,8 +118,15 @@ public class HeldNavigation : MonoBehaviour
         return (angriffsSperreFramesZaehler > 0);
     }
 
+    void attackeBeenden()
+    {
+        anim.SetBool("Attack", false);
+    }
+
     void FixedUpdate()
     {
+        anim.SetFloat("Vertical", navMeshAgent.velocity.z / navMeshAgent.speed);
+        anim.SetFloat("Horizontal", navMeshAgent.velocity.x / navMeshAgent.speed);
         if (!angreifen() && fehlgeschlagen)
             zufaelligesZielFestlegen();
         else if (!navMeshAgent.hasPath && heldHatZiel)
@@ -136,7 +147,7 @@ public class HeldNavigation : MonoBehaviour
 
     void Update()
     {
-        kamera.transform.position = new Vector3(transform.position.x, kamera.transform.position.y, kamera.transform.position.z);
+        kamera.transform.position = new Vector3(transform.position.x, kamera.transform.position.y, transform.position.z);
     }
 
     public void gegnerHinzufuegen(GegnerNavigation gegnerNavigation)

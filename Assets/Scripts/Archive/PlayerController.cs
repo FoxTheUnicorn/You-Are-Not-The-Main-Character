@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float terminalVelocity = 2.0f;
     [SerializeField] private float stamina;           //How much sprint the Player has left
     [SerializeField] private float sprintCooldown;   //How long before sprint starts regenerating
+    [SerializeField] private GameObject playerGameObject;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private float vSpeed = 0.0f;
     private Vector3 inputDirection;
@@ -56,7 +58,17 @@ public class PlayerController : MonoBehaviour
         if (inputDirection.magnitude > 1.0f) inputDirection = inputDirection / inputDirection.magnitude;    //Nerf diagonal movement
 
         Vector3 movement = transform.TransformDirection(inputDirection) * Time.deltaTime;
-        if(applyGravity)
+
+        if (inputDirection.magnitude != 0f)
+            playerGameObject.transform.rotation = Quaternion.Slerp(playerGameObject.transform.rotation, Quaternion.LookRotation(inputDirection) * Quaternion.Euler(0, 90, 0), Time.deltaTime * 10f);
+
+        //float angle = Quaternion.Angle(Quaternion.LookRotation(inputDirection), playerGameObject.transform.rotation);
+
+        //animator.SetFloat("Horizontal", Mathf.Cos(angle / 180f * Mathf.PI) * inputDirection.magnitude);
+        animator.SetFloat("Vertical", /*Mathf.Sin(angle / 180f * Mathf.PI) * */ inputDirection.magnitude);
+
+
+        if (applyGravity)
         {
             if (controller.isGrounded) vSpeed = 0;
             else
