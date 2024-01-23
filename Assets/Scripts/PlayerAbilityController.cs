@@ -7,6 +7,14 @@ public class PlayerAbilityController : MonoBehaviour
 {
     [SerializeField] List<InternalAbility> abilities = new List<InternalAbility>();
     [SerializeField] GameObject SpellCollection;
+    [SerializeField] float SpellHeight = 0.1f;
+    [SerializeField] ParticleSystem poof;
+    private PlayerCharacter player;
+
+    public void Start()
+    {
+        player = GetComponent<PlayerCharacter>();
+    }
 
     public void Update()
     {
@@ -32,7 +40,8 @@ public class PlayerAbilityController : MonoBehaviour
         if (!ability.IsOnCooldown())
         {
             ability.AbilityCooldown();
-            //TODO Ability1 Effect
+            poof.Play();
+            player.ActivateStealth(10.0f);
         }
     }      
     public void CastAbility2()
@@ -42,7 +51,7 @@ public class PlayerAbilityController : MonoBehaviour
         {
             ability.AbilityCooldown();
             Vector3 TargetPosition = transform.position;
-            TargetPosition.y = 0;
+            TargetPosition.y = SpellHeight;
             GameObject spell = Instantiate(ability.SpellObject, TargetPosition, Quaternion.identity, SpellCollection.transform);
 
         }
@@ -54,7 +63,7 @@ public class PlayerAbilityController : MonoBehaviour
         {
             ability.AbilityCooldown();
             Vector3 TargetPosition = transform.position;
-            TargetPosition.y = 0;
+            TargetPosition.y = SpellHeight;
             GameObject spell = Instantiate(ability.SpellObject, TargetPosition, Quaternion.identity, transform);
             spell.transform.localScale = new Vector3(2, 2, 2);
 

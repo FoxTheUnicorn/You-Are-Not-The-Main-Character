@@ -43,8 +43,9 @@ public class HealingSpell : MonoBehaviour
     {
         foreach(GameObject Entity in Entities)
         {
-            //EntityScript script = GetComponent<EntityScript>()
-            /*float MaxHealth = script.GetMaxHealth();
+            //TODO Jörn
+            /*EntityScript script = GetComponent<EntityScript>()
+            float MaxHealth = script.GetMaxHealth();  //GetMaxHealth
             if (script.type == "Enemy")
             {
                 script.Heal((EnemyHealingMaxHP * MaxHealth) + EnemyHealingFlat);

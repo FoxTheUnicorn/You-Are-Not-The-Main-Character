@@ -26,7 +26,7 @@ public class FreezeRune : MonoBehaviour
     {
         if (!armed) return;
         if (triggered) return;
-        //if(!other.CompareTag("Enemy")) return;
+        //if (!other.CompareTag("Enemy")) return;
         ActiveFreeze.Play();
         ArmedFreeze.Stop();
         ArmedFreeze.gameObject.SetActive(false);
@@ -37,10 +37,10 @@ public class FreezeRune : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (!triggered) return;
-        //TODO
+        //TODO Jörn
         /* EnemyScript script = other.GetComponent<EnemyScript>();
         if (script == null) return;
-        script.SetSpeed(script.GetSpeed) */
+        script.SetSpeed(script.GetSpeed * movementSpeedFactor) */
     }
 
     public void ArmRuneAnimation()

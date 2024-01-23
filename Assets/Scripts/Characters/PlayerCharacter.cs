@@ -19,33 +19,24 @@ public class PlayerCharacter : MonoBehaviour, Character
     [SerializeField] private float stamina;           //How much sprint the Player has left
     [SerializeField] private float sprintCooldown;   //How long before sprint starts regenerating
 
-    [SerializeField] private float vSpeed = 0.0f;
+    [SerializeField] private Animator animator;
+
+    private bool isStealth = false;
+
+    private float vSpeed = 0.0f;
     private Vector3 inputDirection;
+    private Vector3 inputVectors;
 
     private CharacterController controller;
-
-    public bool PlayerIsMoving()
-    {
-        return inputDirection.magnitude > 0.1f;
-    }
 
     private void MovePlayer()
     {
         inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        bool isMoving = inputDirection.magnitude > 0.0f;
         bool isSprinting = Input.GetButton("Sprint");
-        if (controller.isGrounded)
-        {
-            vSpeed = 0;
-        }
-
-        if (!PlayerIsMoving())
-        {
-            regenerateSprint();
-        }
 
         if (inputDirection.magnitude > 1.0f) inputDirection = inputDirection / inputDirection.magnitude;    //Nerf diagonal movement
 
-        Vector3 movement = transform.TransformDirection(inputDirection) * Time.deltaTime;
         if (applyGravity)
         {
             if (controller.isGrounded) vSpeed = 0;
@@ -57,12 +48,21 @@ public class PlayerCharacter : MonoBehaviour, Character
                     vSpeed = -terminalVelocity;
                 }
             }
-            movement.y = vSpeed;
+            inputDirection.y = vSpeed;
         }
 
+        Vector3 movement = transform.TransformDirection(inputDirection) * 0.02f;
+
+        if (!isMoving)
+        {
+            animator.SetInteger("Speed", 0);
+            regenerateSprint();
+            return;
+        }
 
         if (!isSprinting)                               //If Player is not holding Sprint
         {
+            animator.SetInteger("Speed", 1);
             regenerateSprint();
             controller.Move(movement * playerSpeed);
             return;
@@ -70,12 +70,14 @@ public class PlayerCharacter : MonoBehaviour, Character
 
         if (stamina > 0.0f)                              //If Player is holding Sprint but doesnt have stamina
         {
+            animator.SetInteger("Speed", 2);
             sprintCooldown = sprintRegenerationDelay;
             stamina -= Time.deltaTime;
             controller.Move(movement * sprintSpeed);
         }
         else                                            //If Player has no Sprint left
         {
+            animator.SetInteger("Speed", 1);
             controller.Move(movement * playerSpeed);
         }
     }
@@ -102,6 +104,19 @@ public class PlayerCharacter : MonoBehaviour, Character
         stamina = sprintDuration;
     }
 
+    public void ActivateStealth(float duration)
+    {
+        isStealth = true;
+        animator.SetBool("Stealth", true);
+        Invoke("DeactivateStealth", duration);
+    }
+
+    public void DeactivateStealth()
+    {
+        isStealth = false;
+        animator.SetBool("Stealth", false);
+    }
+
     public void setSprintDuration(float duration)
     {
         sprintDuration = duration;
@@ -110,19 +125,11 @@ public class PlayerCharacter : MonoBehaviour, Character
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<CharacterController>();
+        regainSprint();
         registerCharacterManager();
         characterManager.registerCharacter(this);
         setEnemyList(characterManager.getEnemyCharacterList(this));
-
-        stamina = sprintDuration;
-        sprintCooldown = sprintRegenerationDelay;
-        controller = GetComponent<CharacterController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void FixedUpdate()
