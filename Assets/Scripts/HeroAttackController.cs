@@ -4,34 +4,31 @@ using UnityEngine;
 
 public class HeroAttackController : MonoBehaviour
 {
-    [SerializeField] Animator HeroAnimator;
-    [SerializeField] bool onCooldown = false;
-    [SerializeField] float SpinCooldown = 3.0f;
+    private Animator HeroAnimator;
+    [SerializeField] HitBox SlashHitbox;
 
-    public void StartSpin()
+    private void Start()
     {
-        Invoke("ResetCooldown", SpinCooldown);
-        HeroAnimator.SetTrigger("SpinTrigger");
-        onCooldown = true;
+        HeroAnimator = GetComponent<Animator>();
     }
-
-    public void ResetCooldown()
-    {
-        HeroAnimator.ResetTrigger("SpinTrigger");
-        onCooldown = false;
-    }
-
 
     void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Enemy")) return;
-        if (onCooldown) return;
-        StartSpin();
+
     }
     void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Enemy")) return;
-        if (onCooldown) return;
-        StartSpin();
+    }
+
+    public void SlashAttack()
+    {
+        HashSet<Collider> colliders = SlashHitbox.Hit();
+        
+        foreach(Collider collider in colliders)
+        {
+            //TODO Gegner Filtern + Treffen
+        }
     }
 }
