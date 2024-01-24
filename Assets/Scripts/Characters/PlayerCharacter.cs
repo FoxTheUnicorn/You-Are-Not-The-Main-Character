@@ -123,7 +123,7 @@ public class PlayerCharacter : MonoBehaviour, Character
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         controller = GetComponent<CharacterController>();
         regainSprint();
@@ -155,4 +155,15 @@ public class PlayerCharacter : MonoBehaviour, Character
     public void hitEnemy(Character enemy) { }
 
     public void receiveHit(Character attacker) { }
+
+    public virtual bool isInvisible()
+    {
+        return false;
+    }
+
+    public void setAnimationProperty(string property, bool isSet)
+    {
+        if (animator.GetBool(property) != isSet)
+            animator.SetBool(property, isSet);
+    }
 }

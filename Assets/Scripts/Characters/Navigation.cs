@@ -18,20 +18,24 @@ public abstract class Navigation : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public GameObject boden;
 
-    private Bounds floorBounds;
+    //private Bounds floorBounds;
     private float randomX1, randomZ1, randomX2, randomZ2;
     private int statusTargetSetting = TARGETSETTINGINACTIVE, statusWanderingAroundAimlessly = WANDERINGAROUNDAIMLESSLYINACTIVE;
-    private float restingTimeMin = 0.5f, restingTimeMax = 1.5f;
+    private float restingTimeMin = 1.5f, restingTimeMax = 6f;
     private List<Character> enemyList = new List<Character>();
     private Character ownCharacter = null;
+
+    public GameObject ziel;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        floorBounds = boden.GetComponent<Renderer>().bounds;
+        navMeshAgent.isStopped = true;
+        ownCharacter.setAnimationProperty("RandomWalk", false);
+        //floorBounds = boden.GetComponent<Renderer>().bounds;
 
         //Testschrott:
-        startWanderingAroundAimlesslyWithinEllipse(-145.4f, 0f, 10f, 15f);
+        startWanderingAroundAimlesslyWithinRectangle(-60f, -43f, 60f, 43f);
     }
 
     public void setOwnCharacterReference(Character ownCharacterReference)
@@ -67,6 +71,7 @@ public abstract class Navigation : MonoBehaviour
         else
         {
             statusTargetSetting = TARGETSETTINGINACTIVE;
+            ziel.transform.position = new Vector3(navMeshAgent.destination.x, 1f, navMeshAgent.destination.z);
             navMeshAgent.isStopped = false;
         }
     }
@@ -149,25 +154,29 @@ public abstract class Navigation : MonoBehaviour
         setRandomTargetWithinEllipseInternal();
     }
 
-    public void setEnemyList(List<Character> newList)
+    public virtual void setEnemyList(List<Character> newList)
     {
         enemyList = newList;
     }
 
     public virtual void Update()
     {
+        if (navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)) navMeshAgent.isStopped = false;
+        ownCharacter.setAnimationProperty("RandomWalk", navMeshAgent.hasPath /*&& !navMeshAgent.isStopped*/);
+
         if (statusTargetSetting == SETTINGTARGETWITHINRECTANGLE)
             setRandomTargetWithinRectangleInternal();
         else if (statusTargetSetting == SETTINGTARGETWITHINELLIPSE)
             setRandomTargetWithinEllipseInternal();
-        else if (!navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE) && statusTargetSetting != TARGETSETTINGPENDING)
+        else if (!navMeshAgent.hasPath && !navMeshAgent.pathPending && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE) && statusTargetSetting != TARGETSETTINGPENDING)
         {
+            navMeshAgent.isStopped = true;
             statusTargetSetting = TARGETSETTINGPENDING;
             float restingTime = restingTimeMin + Random.Range(0f, 1f) * (restingTimeMax - restingTimeMin);
             if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE)
                 Invoke("setRandomTargetWithinRectangleInternal", restingTime);
             else
-                Invoke("setRandomTargetWithinEllipseInternal", 10f);
+                Invoke("setRandomTargetWithinEllipseInternal", restingTime);
         }
     }
 

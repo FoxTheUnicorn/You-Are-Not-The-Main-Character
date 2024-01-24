@@ -6,15 +6,16 @@ public abstract class NPCCharacter : Navigation, Character
 {
     private List<Character> enemyList = new List<Character>();
     CharacterManager characterManager;
+    public Animator animator;
 
     // Start is called before the first frame update
     public override void Start()
     {
-        base.Start();
-        base.setOwnCharacterReference(this);
+        setOwnCharacterReference(this);
         registerCharacterManager();
         characterManager.registerCharacter(this);
         setEnemyList(characterManager.getEnemyCharacterList(this));
+        base.Start();
     }
 
     // Update is called once per frame
@@ -48,4 +49,16 @@ public abstract class NPCCharacter : Navigation, Character
 
     public virtual void receiveHit(Character attacker) { }
 
+    public virtual bool isInvisible()
+    {
+        return false;
+    }
+
+    public void setAnimationProperty(string property, bool isSet)
+    {
+        if (animator.GetBool(property) != isSet)
+        {
+            animator.SetBool(property, isSet);
+        }
+    }
 }
