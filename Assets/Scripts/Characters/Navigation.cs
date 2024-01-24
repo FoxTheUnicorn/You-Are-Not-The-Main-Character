@@ -23,15 +23,17 @@ public abstract class Navigation : MonoBehaviour
     private List<Character> enemyList = new List<Character>();
     private Character ownCharacter = null;
 
-    private float attackRadius = 0f, attackRadiusInc = .001f;
+    private float attackRadius = 3f, attackRadiusInc = .001f, hitRadius = 1.8f;
     private int checkIfShouldAttackCounter;
+
+    private Character attackedCharacter = null;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         navMeshAgent.isStopped = true;
         ownCharacter.setAnimationPropertyBool("RandomWalk", false);
-        checkIfShouldAttackCounter = (int)Random.Range(0f, 12f);
+        checkIfShouldAttackCounter = (int)Random.Range(0f, 10f);
         //floorBounds = boden.GetComponent<Renderer>().bounds;
 
         //Testschrott:
@@ -66,6 +68,7 @@ public abstract class Navigation : MonoBehaviour
         if (targetLocation.x < navMeshAgent.destination.x - 0.001f || targetLocation.x > navMeshAgent.destination.x + 0.001f || targetLocation.z < navMeshAgent.destination.z - 0.001f || targetLocation.z > navMeshAgent.destination.z + 0.001f)
         {
             navMeshAgent.isStopped = true;
+            navMeshAgent.ResetPath();
             statusTargetSetting = SETTINGTARGETWITHINRECTANGLE;
         }
         else
@@ -93,6 +96,7 @@ public abstract class Navigation : MonoBehaviour
         if (targetLocation.x < navMeshAgent.destination.x - 0.001f || targetLocation.x > navMeshAgent.destination.x + 0.001f || targetLocation.z < navMeshAgent.destination.z - 0.001f || targetLocation.z > navMeshAgent.destination.z + 0.001f)
         {
             navMeshAgent.isStopped = true;
+            navMeshAgent.ResetPath();
             statusTargetSetting = SETTINGTARGETWITHINELLIPSE;
         }
         else
@@ -105,6 +109,7 @@ public abstract class Navigation : MonoBehaviour
     public void setRandomTargetWithinRectangle(float x1, float z1, float x2, float z2)
     {
         navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
         randomX1 = x1;
         randomZ1 = z1;
         randomX2 = x2;
@@ -116,6 +121,7 @@ public abstract class Navigation : MonoBehaviour
     public void setRandomTargetWithinEllipse(float centerX, float centerZ, float radiusX, float radiusZ)
     {
         navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
         randomX1 = centerX - radiusX;
         randomZ1 = centerZ - radiusZ;
         randomX2 = centerX + radiusX;
@@ -127,6 +133,7 @@ public abstract class Navigation : MonoBehaviour
     public void stopWalking()
     {
         navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
         statusWanderingAroundAimlessly = WANDERINGAROUNDAIMLESSLYINACTIVE;
         statusTargetSetting = TARGETSETTINGINACTIVE;
     }
@@ -134,6 +141,7 @@ public abstract class Navigation : MonoBehaviour
     public void startWanderingAroundAimlesslyWithinRectangle(float x1, float z1, float x2, float z2)
     {
         navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
         randomX1 = x1;
         randomZ1 = z1;
         randomX2 = x2;
@@ -146,6 +154,7 @@ public abstract class Navigation : MonoBehaviour
 
     {
         navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
         randomX1 = centerX - radiusX;
         randomZ1 = centerZ - radiusZ;
         randomX2 = centerX + radiusX;
@@ -159,28 +168,39 @@ public abstract class Navigation : MonoBehaviour
         enemyList = newList;
     }
 
-    public bool checkIfShouldAttack()
+    public void checkIfShouldAttack()
     {
-        float smallestRadius = 1000000000f;
+        float smallestRadius = attackRadius;
+        Vector3 position = new Vector3(0f, 0f, 0f);
         foreach (Character character in enemyList)
         {
             float radius = (character.getPosition() - transform.position).magnitude;
             if (radius < smallestRadius)
+            {
                 smallestRadius = radius;
+                attackedCharacter = character;
+            }
         }
-        if (smallestRadius < attackRadius)
+        if (attackedCharacter != null)
         {
+            navMeshAgent.SetDestination(attackedCharacter.getPosition());
             Debug.Log("Angriff");
-            return true;
+            statusTargetSetting = ENEMYTARGET;
         }
-        return false;
     }
 
     public virtual void Update()
     {
         attackRadius += attackRadiusInc;
         checkIfShouldAttackCounter++;
-        if (checkIfShouldAttackCounter >= 12)
+        if (attackedCharacter != null)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 1f);
+        if ((attackedCharacter != null) && (attackedCharacter.getPosition() - transform.position).magnitude <= hitRadius)
+        {
+            navMeshAgent.isStopped = true;
+            navMeshAgent.ResetPath();
+        }
+        else if (checkIfShouldAttackCounter >= 10)
         {
             checkIfShouldAttackCounter = 0;
             checkIfShouldAttack();
@@ -197,6 +217,7 @@ public abstract class Navigation : MonoBehaviour
         else if (!navMeshAgent.hasPath && !navMeshAgent.pathPending && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE) && statusTargetSetting != TARGETSETTINGPENDING)
         {
             navMeshAgent.isStopped = true;
+            navMeshAgent.ResetPath();
             statusTargetSetting = TARGETSETTINGPENDING;
             float restingTime = restingTimeMin + Random.Range(0f, 1f) * (restingTimeMax - restingTimeMin);
             if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE)
