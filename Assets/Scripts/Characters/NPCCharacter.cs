@@ -18,6 +18,11 @@ public abstract class NPCCharacter : Navigation, Character
         base.Start();
     }
 
+    public Vector3 getPosition()
+    {
+        return transform.position;
+    }
+
     // Update is called once per frame
     public override void Update()
     {

@@ -29,6 +29,11 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     private CharacterController controller;
 
+    public Vector3 getPosition()
+    {
+        return transform.position;
+    }
+
     private void MovePlayer()
     {
         inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

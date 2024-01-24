@@ -23,11 +23,15 @@ public abstract class Navigation : MonoBehaviour
     private List<Character> enemyList = new List<Character>();
     private Character ownCharacter = null;
 
+    private float attackRadius = 0f, attackRadiusInc = .001f;
+    private int checkIfShouldAttackCounter;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         navMeshAgent.isStopped = true;
         ownCharacter.setAnimationPropertyBool("RandomWalk", false);
+        checkIfShouldAttackCounter = (int)Random.Range(0f, 12f);
         //floorBounds = boden.GetComponent<Renderer>().bounds;
 
         //Testschrott:
@@ -155,8 +159,33 @@ public abstract class Navigation : MonoBehaviour
         enemyList = newList;
     }
 
+    public bool checkIfShouldAttack()
+    {
+        float smallestRadius = 1000000000f;
+        foreach (Character character in enemyList)
+        {
+            float radius = (character.getPosition() - transform.position).magnitude;
+            if (radius < smallestRadius)
+                smallestRadius = radius;
+        }
+        if (smallestRadius < attackRadius)
+        {
+            Debug.Log("Angriff");
+            return true;
+        }
+        return false;
+    }
+
     public virtual void Update()
     {
+        attackRadius += attackRadiusInc;
+        checkIfShouldAttackCounter++;
+        if (checkIfShouldAttackCounter >= 12)
+        {
+            checkIfShouldAttackCounter = 0;
+            checkIfShouldAttack();
+        }
+
         if (navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)) navMeshAgent.isStopped = false;
         ownCharacter.setAnimationPropertyBool("RandomWalk", navMeshAgent.hasPath /*&& !navMeshAgent.isStopped*/);
         ownCharacter.setAnimationPropertyFloat("WalkingSpeed", navMeshAgent.velocity.magnitude / navMeshAgent.speed);
