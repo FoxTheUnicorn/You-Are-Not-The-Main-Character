@@ -768,8 +768,8 @@ GameObject:
   - component: {fileID: 965769758695075529}
   - component: {fileID: 6844987205514194557}
   - component: {fileID: 7585481610527658834}
-  - component: {fileID: 7038017865280401979}
   - component: {fileID: 6861969680752250215}
+  - component: {fileID: 955049601911964007}
   m_Layer: 6
   m_Name: HeroPrefab
   m_TagString: Untagged
@@ -786,7 +786,7 @@ Transform:
   m_GameObject: {fileID: 3497727236674053020}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.699165, y: -31.469856, z: 36.359276}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -866,22 +866,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7038017865280401979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3497727236674053020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfc22e57b9abef649a57fbe7133bd71b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 6861969680752250215}
-  boden: {fileID: 0}
-  ziel: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!195 &6861969680752250215
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -891,7 +875,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3497727236674053020}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
@@ -904,6 +888,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &955049601911964007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497727236674053020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26cb3d56805187b4f82cb6f74f2f3cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 6861969680752250215}
+  animator: {fileID: 309438540688380544}
 --- !u!1 &3631753441023634549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,7 +2561,7 @@ Transform:
   m_GameObject: {fileID: 9038442901177726524}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.30117, y: 0.00390625, z: 3.059784}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

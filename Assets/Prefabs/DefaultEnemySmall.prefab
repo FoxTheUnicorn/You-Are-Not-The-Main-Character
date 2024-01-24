@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 3497727236674053020}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.8, y: 0.07263184, z: 23.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9110855842181217294}
@@ -123,8 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
-  boden: {fileID: 0}
-  ziel: {fileID: 0}
   animator: {fileID: 4498628305834930361}
 --- !u!195 &6861969680752250215
 NavMeshAgent:
@@ -135,7 +133,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3497727236674053020}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5000001
+  m_Radius: 1.2
   m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
@@ -170,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919394547704575932, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
       propertyPath: m_Name
-      value: DefaultBigEnemy
+      value: DefaultSmallEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 919394547704575932, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
       propertyPath: m_Layer

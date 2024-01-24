@@ -16,16 +16,12 @@ public abstract class Navigation : MonoBehaviour
     private const int WANDERINGAROUNDAIMLESSLYWITHINELLIPSE = 2;
 
     public NavMeshAgent navMeshAgent;
-    public GameObject boden;
 
-    //private Bounds floorBounds;
     private float randomX1, randomZ1, randomX2, randomZ2;
     private int statusTargetSetting = TARGETSETTINGINACTIVE, statusWanderingAroundAimlessly = WANDERINGAROUNDAIMLESSLYINACTIVE;
     private float restingTimeMin = 1.5f, restingTimeMax = 6f;
     private List<Character> enemyList = new List<Character>();
     private Character ownCharacter = null;
-
-    public GameObject ziel;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -71,7 +67,7 @@ public abstract class Navigation : MonoBehaviour
         else
         {
             statusTargetSetting = TARGETSETTINGINACTIVE;
-            ziel.transform.position = new Vector3(navMeshAgent.destination.x, 1f, navMeshAgent.destination.z);
+            //ziel.transform.position = new Vector3(navMeshAgent.destination.x, 1f, navMeshAgent.destination.z);
             navMeshAgent.isStopped = false;
         }
     }
