@@ -8,7 +8,7 @@ public class FreezeRune : MonoBehaviour
     [SerializeField] ParticleSystem UnArmedToArmed;
     [SerializeField] ParticleSystem ArmedFreeze;
 
-    [SerializeField] ParticleSystem ActiveFreeze; 
+    [SerializeField] ParticleSystem ActiveFreeze;
     
     [SerializeField] float movementSpeedFactor = 0.25f;
     [SerializeField] float ArmingTime = 3.0f;
