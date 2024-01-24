@@ -161,9 +161,15 @@ public class PlayerCharacter : MonoBehaviour, Character
         return false;
     }
 
-    public void setAnimationProperty(string property, bool isSet)
+    public void setAnimationPropertyBool(string property, bool isSet)
     {
         if (animator.GetBool(property) != isSet)
             animator.SetBool(property, isSet);
+    }
+
+
+    public void setAnimationPropertyFloat(string property, float value)
+    {
+        animator.SetFloat(property, value);
     }
 }

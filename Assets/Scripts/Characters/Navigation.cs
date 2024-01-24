@@ -31,7 +31,7 @@ public abstract class Navigation : MonoBehaviour
     public virtual void Start()
     {
         navMeshAgent.isStopped = true;
-        ownCharacter.setAnimationProperty("RandomWalk", false);
+        ownCharacter.setAnimationPropertyBool("RandomWalk", false);
         //floorBounds = boden.GetComponent<Renderer>().bounds;
 
         //Testschrott:
@@ -162,7 +162,8 @@ public abstract class Navigation : MonoBehaviour
     public virtual void Update()
     {
         if (navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)) navMeshAgent.isStopped = false;
-        ownCharacter.setAnimationProperty("RandomWalk", navMeshAgent.hasPath /*&& !navMeshAgent.isStopped*/);
+        ownCharacter.setAnimationPropertyBool("RandomWalk", navMeshAgent.hasPath /*&& !navMeshAgent.isStopped*/);
+        ownCharacter.setAnimationPropertyFloat("WalkingSpeed", navMeshAgent.velocity.magnitude / navMeshAgent.speed);
 
         if (statusTargetSetting == SETTINGTARGETWITHINRECTANGLE)
             setRandomTargetWithinRectangleInternal();

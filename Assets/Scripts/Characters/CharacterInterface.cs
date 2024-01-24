@@ -7,5 +7,6 @@ public interface Character
     public void hitEnemy(Character enemy);
     public void receiveHit(Character attacker);
     public bool isInvisible();
-    public void setAnimationProperty(string property, bool isSet);
+    public void setAnimationPropertyBool(string property, bool isSet);
+    public void setAnimationPropertyFloat(string property, float value);
 }
