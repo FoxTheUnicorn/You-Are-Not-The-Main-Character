@@ -39,6 +39,7 @@ public class PlayerAbilityController : MonoBehaviour
         InternalAbility ability = abilities[0];
         if (!ability.IsOnCooldown())
         {
+            //Soundeffekte
             ability.AbilityCooldown();
             poof.Play();
             player.ActivateStealth(10.0f);
@@ -49,6 +50,7 @@ public class PlayerAbilityController : MonoBehaviour
         InternalAbility ability = abilities[1];
         if (!ability.IsOnCooldown())
         {
+            //Soundeffekte
             ability.AbilityCooldown();
             Vector3 TargetPosition = transform.position;
             TargetPosition.y = SpellHeight;
@@ -61,6 +63,7 @@ public class PlayerAbilityController : MonoBehaviour
         InternalAbility ability = abilities[2];
         if (!ability.IsOnCooldown())
         {
+            //Soundeffekte
             ability.AbilityCooldown();
             Vector3 TargetPosition = transform.position;
             TargetPosition.y = SpellHeight;

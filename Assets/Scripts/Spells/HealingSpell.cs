@@ -23,6 +23,7 @@ public class HealingSpell : MonoBehaviour
     private void Start()
     {
         HealingBurstDelay = HealingDuration / HealingBursts;
+        //TODO Bee SFX
         Invoke("HealingBurst", HealingBurstDelay);
     }
 
@@ -34,6 +35,7 @@ public class HealingSpell : MonoBehaviour
             return;
         }
         if(BurstsSent > 0) HealingBurstEffect.Play();
+        //TODO Bee SFX
         HealEntities();
         BurstsSent++;
         Invoke("HealingBurst", HealingBurstDelay);
