@@ -23,10 +23,12 @@ public abstract class Navigation : MonoBehaviour
     private List<Character> enemyList = new List<Character>();
     private Character ownCharacter = null;
 
-    private float attackRadius = 3f, attackRadiusInc = .001f, hitRadius = 1.8f;
+    private float attackRadius = 25f, attackRadiusInc = .001f, hitRadius = 2.2f;
     private int checkIfShouldAttackCounter;
 
     private Character attackedCharacter = null;
+
+    private float time = 0f, enemySightedTime = 0f;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -183,30 +185,61 @@ public abstract class Navigation : MonoBehaviour
         }
         if (attackedCharacter != null)
         {
-            navMeshAgent.SetDestination(attackedCharacter.getPosition());
-            Debug.Log("Angriff");
             statusTargetSetting = ENEMYTARGET;
+            if (ownCharacter is EnemyCharacter)
+            {
+                ownCharacter.setAnimationPropertyBool("RandomRoar", true);
+                if (enemySightedTime == 0f)
+                    enemySightedTime = time;
+                if (time - enemySightedTime < 2.6f)
+                {
+                    navMeshAgent.isStopped = true;
+                    navMeshAgent.ResetPath();
+                }
+                else if (time - enemySightedTime < 2.8f)
+                {
+                    ownCharacter.setAnimationPropertyBool("FoundEnemy", true);
+                }
+                else
+                {
+                    navMeshAgent.SetDestination(attackedCharacter.getPosition());
+                    navMeshAgent.speed = 7f;
+                }
+            }
+            else
+            {
+                navMeshAgent.SetDestination(attackedCharacter.getPosition());
+                ownCharacter.setAnimationPropertyBool("EnemySighted", true);
+                navMeshAgent.speed = 7f;
+            }
         }
     }
 
     public virtual void Update()
     {
+        time += Time.deltaTime;
         attackRadius += attackRadiusInc;
         checkIfShouldAttackCounter++;
-        if (attackedCharacter != null)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 1f);
         if ((attackedCharacter != null) && (attackedCharacter.getPosition() - transform.position).magnitude <= hitRadius)
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 10f);
+            ownCharacter.setAnimationPropertyBool("EnemyInRange", true);
         }
-        else if (checkIfShouldAttackCounter >= 10)
+        else
         {
-            checkIfShouldAttackCounter = 0;
-            checkIfShouldAttack();
+            ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+            if (attackedCharacter != null)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 1f);
+            if (checkIfShouldAttackCounter >= 10)
+            {
+                checkIfShouldAttackCounter = 0;
+                checkIfShouldAttack();
+            }
         }
 
-        if (navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)) navMeshAgent.isStopped = false;
+        if (statusTargetSetting != ENEMYTARGET && navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)) navMeshAgent.isStopped = false;
         ownCharacter.setAnimationPropertyBool("RandomWalk", navMeshAgent.hasPath /*&& !navMeshAgent.isStopped*/);
         ownCharacter.setAnimationPropertyFloat("WalkingSpeed", navMeshAgent.velocity.magnitude / navMeshAgent.speed);
 
@@ -214,7 +247,7 @@ public abstract class Navigation : MonoBehaviour
             setRandomTargetWithinRectangleInternal();
         else if (statusTargetSetting == SETTINGTARGETWITHINELLIPSE)
             setRandomTargetWithinEllipseInternal();
-        else if (!navMeshAgent.hasPath && !navMeshAgent.pathPending && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE) && statusTargetSetting != TARGETSETTINGPENDING)
+        else if (!navMeshAgent.hasPath && !navMeshAgent.pathPending && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE) && statusTargetSetting != TARGETSETTINGPENDING && statusTargetSetting != ENEMYTARGET)
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();
