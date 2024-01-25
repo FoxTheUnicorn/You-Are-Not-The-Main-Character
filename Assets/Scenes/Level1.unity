@@ -7416,10 +7416,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1420378556}
     m_Modifications:
-    - target: {fileID: 8887074033901026, guid: d1d1ee9bc6f9c204cb17ee90e1eaed87, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
     - target: {fileID: 3179396682130234016, guid: d1d1ee9bc6f9c204cb17ee90e1eaed87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -56.10166
@@ -7463,10 +7459,6 @@ PrefabInstance:
     - target: {fileID: 3497727236674053020, guid: d1d1ee9bc6f9c204cb17ee90e1eaed87, type: 3}
       propertyPath: m_Name
       value: HeroCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9038442901177726524, guid: d1d1ee9bc6f9c204cb17ee90e1eaed87, type: 3}
-      propertyPath: m_Name
-      value: HeroModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

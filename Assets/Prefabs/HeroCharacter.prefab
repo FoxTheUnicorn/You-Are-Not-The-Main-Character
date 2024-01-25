@@ -79,6 +79,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 3179396682130234016}
     m_Modifications:
     - target: {fileID: 1580364083173693503, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580364083173693503, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580364083173693503, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300002, guid: cd1aca553b60e144fb609d7b0fecf4e0, type: 2}
@@ -128,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8559182523405386151, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
       propertyPath: m_Name
-      value: HeroCharacter
+      value: HeroModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
