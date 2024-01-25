@@ -80,6 +80,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3179396682130234016}
     m_Modifications:
+    - target: {fileID: 844775096516356729, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844775096516356729, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844775096516356729, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1580364083173693503, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
       propertyPath: m_Volume
       value: 0.2
