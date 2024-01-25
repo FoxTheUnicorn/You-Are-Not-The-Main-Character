@@ -30,6 +30,8 @@ public class PlayerCharacter : MonoBehaviour, Character
     private CharacterController controller;
 
     private int maxHealth = 500, health;
+    private Character ownCharacter;
+    public RegularEnemy regularEnemy;
 
     public Vector3 getPosition()
     {
@@ -38,6 +40,7 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     private void MovePlayer()
     {
+        if (health <= 0) return;
         inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         bool isMoving = inputDirection.magnitude > 0.0f;
         bool isSprinting = Input.GetButton("Sprint");
@@ -91,6 +94,7 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     private void regenerateSprint()
     {
+        if (health <= 0) return;
         if (stamina == sprintDuration) return;                   //Not used any sprint
 
         if (sprintCooldown > 0.0f)                             //If sprint regeneration is still on cooldown
@@ -108,11 +112,13 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     public void regainSprint()
     {
+        if (health <= 0) return;
         stamina = sprintDuration;
     }
 
     public void ActivateStealth(float duration)
     {
+        if (health <= 0) return;
         isStealth = true;
         animator.SetBool("Stealth", true);
         Invoke("DeactivateStealth", duration);
@@ -126,12 +132,14 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     public void setSprintDuration(float duration)
     {
+        if (health <= 0) return;
         sprintDuration = duration;
     }
 
     // Start is called before the first frame update
     public void Start()
     {
+        ownCharacter = GetComponent<PlayerCharacter>();
         health = maxHealth;
         controller = GetComponent<CharacterController>();
         regainSprint();
@@ -188,10 +196,21 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     public bool receiveHit(Character enemy, int damage)
     {
+        if (health <= 0) return true;
         health -= damage;
         if (health <= 0)
         {
             health = 0;
+            regularEnemy.EnemyStruck();
+            characterManager.removeCharacter(ownCharacter);
+            foreach (Character character in enemyList)
+            {
+                if (character is NPCCharacter)
+                {
+                    NPCCharacter npcCharacter = (NPCCharacter)character;
+                    npcCharacter.characterKilled(ownCharacter);
+                }
+            }
             return true;
         }
         return false;

@@ -350,6 +350,7 @@ MonoBehaviour:
   stamina: 0
   sprintCooldown: 0
   animator: {fileID: 6347108213815687059}
+  regularEnemy: {fileID: 3117070765914996054}
 --- !u!1 &5440412466365382724
 GameObject:
   m_ObjectHideFlags: 0

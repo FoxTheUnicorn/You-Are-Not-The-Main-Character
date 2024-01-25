@@ -48,7 +48,8 @@ public class RegularEnemy : MonoBehaviour
 
     private void RemoveCharacter()
     {
-        Destroy(ownCharacter);
+        if (ownCharacter.name != "Player")
+            Destroy(ownCharacter);
     }
 
     public void Update()
