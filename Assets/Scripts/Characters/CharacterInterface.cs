@@ -5,11 +5,11 @@ using UnityEngine;
 public interface Character
 {
     public List<Character> getEnemyList();
-    public void hitEnemy(Character enemy);
-    public void receiveHit(Character attacker);
     public bool isInvisible();
     public void setAnimationPropertyBool(string property, bool isSet);
     public bool getAnimationPropertyBool(string property);
     public void setAnimationPropertyFloat(string property, float value);
     public Vector3 getPosition();
+    public void hitEnemy(Character enemy);
+    public bool receiveHit(Character enemy, int damage);
 }

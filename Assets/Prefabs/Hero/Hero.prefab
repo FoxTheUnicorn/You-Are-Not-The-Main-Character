@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3613a56ed8c41394bb8ab472777dc4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &9038442901177726524
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +78,7 @@ GameObject:
   - component: {fileID: 5156513526725573886}
   - component: {fileID: 8887074033901026}
   - component: {fileID: 2482503949845356100}
+  - component: {fileID: -6353442079672904042}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -150,6 +152,21 @@ CapsuleCollider:
   m_Height: 1.96
   m_Direction: 1
   m_Center: {x: 0, y: 0.98, z: 0}
+--- !u!114 &-6353442079672904042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038442901177726524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnTime: 4
+  ownCharacter: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1001 &6134409702132117265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,3 +881,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlashHitbox: {fileID: 3924377467404093382}
+  ownCharacter: {fileID: 0}

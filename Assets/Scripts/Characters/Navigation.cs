@@ -21,9 +21,10 @@ public abstract class Navigation : MonoBehaviour
     private int statusTargetSetting = TARGETSETTINGINACTIVE, statusWanderingAroundAimlessly = WANDERINGAROUNDAIMLESSLYINACTIVE;
     private float restingTimeMin = 1.5f, restingTimeMax = 6f;
     private List<Character> enemyList = new List<Character>();
-    private Character ownCharacter = null;
+    private protected Character ownCharacter = null;
 
-    private float attackRadius = 25f, attackRadiusInc = .001f, hitRadius = 2.2f;
+    private const float initialAttackRadius = 20f;
+    private float attackRadius = initialAttackRadius, attackRadiusInc = .001f, hitRadius = 2.2f;
     private int checkIfShouldAttackCounter;
 
     private Character attackedCharacter = null;
@@ -32,9 +33,34 @@ public abstract class Navigation : MonoBehaviour
 
     bool canHit;
 
+    private float initialNavMeshSpeed, navMeshSpeedRunMultiplier = 2f;
+
+    public void characterKilled(Character character)
+    {
+        if (character == attackedCharacter)
+        {
+            attackedCharacter = null;
+            if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE)
+                statusTargetSetting = SETTINGTARGETWITHINRECTANGLE;
+            else if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)
+                statusTargetSetting = SETTINGTARGETWITHINELLIPSE;
+            else
+                statusTargetSetting = TARGETSETTINGINACTIVE;
+            enemySightedTime = 0f;
+            attackRadius = initialAttackRadius;
+            canHit = false;
+            ownCharacter.setAnimationPropertyBool("RandomWalk", false);
+            ownCharacter.setAnimationPropertyBool("RandomRoar", false);
+            ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
+            ownCharacter.setAnimationPropertyBool("EnemySighted", false);
+            navMeshAgent.speed = initialNavMeshSpeed;
+        }
+    }
+
     // Start is called before the first frame update
     public virtual void Start()
     {
+        initialNavMeshSpeed = navMeshAgent.speed;
         navMeshAgent.isStopped = true;
         ownCharacter.setAnimationPropertyBool("RandomWalk", false);
         checkIfShouldAttackCounter = (int)Random.Range(0f, 10f);
@@ -47,16 +73,6 @@ public abstract class Navigation : MonoBehaviour
     public void setOwnCharacterReference(Character ownCharacterReference)
     {
         ownCharacter = ownCharacterReference;
-    }
-
-    public void setWalkingSpeed(float speed)
-    {
-        navMeshAgent.speed = speed;
-    }
-
-    public float getWalkingSpeed()
-    {
-        return navMeshAgent.speed;
     }
 
     public void setRestingTime(float timeMin, float timeMax)
@@ -140,6 +156,22 @@ public abstract class Navigation : MonoBehaviour
         navMeshAgent.ResetPath();
         statusWanderingAroundAimlessly = WANDERINGAROUNDAIMLESSLYINACTIVE;
         statusTargetSetting = TARGETSETTINGINACTIVE;
+        attackedCharacter = null;
+        enemySightedTime = 0f;
+        attackRadius = initialAttackRadius;
+        canHit = false;
+        ownCharacter.setAnimationPropertyBool("RandomWalk", false);
+        ownCharacter.setAnimationPropertyBool("RandomRoar", false);
+        ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
+        ownCharacter.setAnimationPropertyBool("EnemySighted", false);
+        ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+        ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+    }
+
+    public void disableAttack()
+    {
+        attackRadius = 0f;
+        attackRadiusInc = 0f;
     }
 
     public void startWanderingAroundAimlesslyWithinRectangle(float x1, float z1, float x2, float z2)
@@ -205,14 +237,14 @@ public abstract class Navigation : MonoBehaviour
                 else
                 {
                     navMeshAgent.SetDestination(attackedCharacter.getPosition());
-                    navMeshAgent.speed = 7f;
+                    navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier;
                 }
             }
             else
             {
                 navMeshAgent.SetDestination(attackedCharacter.getPosition());
                 ownCharacter.setAnimationPropertyBool("EnemySighted", true);
-                navMeshAgent.speed = 7f;
+                navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier;
             }
         }
     }

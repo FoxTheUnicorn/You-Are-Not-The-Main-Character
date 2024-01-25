@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
   animator: {fileID: 4498628305834930361}
+  regularEnemy: {fileID: 1017590960034640557}
 --- !u!195 &6861969680752250215
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -162,6 +163,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 562736240824638585, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+      propertyPath: DespawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 562736240824638585, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+      propertyPath: ownCharacter
+      value: 
+      objectReference: {fileID: 3497727236674053020}
+    - target: {fileID: 562736240824638585, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+      propertyPath: DeathParticles
+      value: 
+      objectReference: {fileID: 5610650971668590559}
     - target: {fileID: 684961387682533087, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -372,13 +385,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5531901681338818389, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+    - {fileID: 6774463492664221723, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+--- !u!114 &1017590960034640557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 562736240824638585, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+  m_PrefabInstance: {fileID: 707074174267698900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &4498628305834930361 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4016752006644031085, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+  m_PrefabInstance: {fileID: 707074174267698900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5610650971668590559 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4903577090065269003, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
   m_PrefabInstance: {fileID: 707074174267698900}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &9110855842181217294 stripped

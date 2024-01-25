@@ -6,6 +6,7 @@ public class HeroAttackController : MonoBehaviour
 {
     private Animator HeroAnimator;
     [SerializeField] HitBox SlashHitbox;
+    [SerializeField] private HeroCharacter ownCharacter;
 
     private void Start()
     {
@@ -31,7 +32,8 @@ public class HeroAttackController : MonoBehaviour
             EnemyCharacter otherCharacter;
             if ((otherCharacter = (collider.GetComponent("EnemyCharacter") as EnemyCharacter)) != null && otherCharacter.getCanHit())
             {
-                Debug.Log("Hit " + collider.gameObject.name);
+                //Debug.Log("Hit " + collider.gameObject.name);
+                ownCharacter.hitEnemy(otherCharacter);
             }
         }
     }

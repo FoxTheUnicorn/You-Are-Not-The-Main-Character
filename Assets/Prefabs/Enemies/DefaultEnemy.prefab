@@ -4938,8 +4938,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1416180684508258112}
   - {fileID: 8958468500756417435}
+  - {fileID: 1416180684508258112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6691212702004145855
@@ -5005,6 +5005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DespawnTime: 4
+  ownCharacter: {fileID: 0}
+  DeathParticles: {fileID: 3453565112054109641}
 --- !u!1001 &8923995766672960624
 PrefabInstance:
   m_ObjectHideFlags: 0

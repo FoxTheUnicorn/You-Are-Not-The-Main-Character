@@ -10,12 +10,12 @@ public class HitBox : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         colliders.Add(other);
-        Debug.Log("Added " + other.gameObject.name);
+        //Debug.Log("Added " + other.gameObject.name);
     }    
     void OnTriggerExit(Collider other)
     {
         colliders.Remove(other);
-        Debug.Log("Removed " + other.gameObject.name);
+        //Debug.Log("Removed " + other.gameObject.name);
     }
 
     private void OnEnable()

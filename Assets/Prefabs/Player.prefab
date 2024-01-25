@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 614088255876055373}
   - component: {fileID: 796762346772290876}
   - component: {fileID: 8395089939208927583}
+  - component: {fileID: 125200281736172266}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -125,8 +126,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2747238871017925522}
   - {fileID: 1077866222140222953}
+  - {fileID: 2747238871017925522}
   - {fileID: 8341819628493179604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,6 +222,21 @@ MonoBehaviour:
   stamina: 0
   sprintCooldown: 0
   animator: {fileID: 6347108213815687059}
+--- !u!114 &125200281736172266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245330195410350166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnTime: 5
+  ownCharacter: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &8997094504577135865
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +884,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8445528726072364040}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4914179015892297449}
   m_SourcePrefab: {fileID: 100100000, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
 --- !u!1 &413919067309553491 stripped
 GameObject:
@@ -901,6 +920,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4914179015892297449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413919067309553491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnTime: 1
+  ownCharacter: {fileID: 1245330195410350166}
+  DeathParticles: {fileID: 0}
 --- !u!4 &1077866222140222953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
@@ -925,15 +959,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2514895272187819181, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2514895272187819181, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2514895272187819181, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2514895272187819181, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
       propertyPath: m_LocalPosition.x
