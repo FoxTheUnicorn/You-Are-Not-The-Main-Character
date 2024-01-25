@@ -5373,7 +5373,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5492,6 +5492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DespawnTime: 4
+  ownCharacter: {fileID: 0}
+  DeathParticles: {fileID: 0}
 --- !u!1 &8657038819693842600
 GameObject:
   m_ObjectHideFlags: 0
@@ -6085,6 +6087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PunchHitbox: {fileID: 3124321185948798254}
+  ownCharacter: {fileID: 0}
 --- !u!4 &8958468500756417435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b49030801f3be3c40b82dd67dede2858, type: 3}
