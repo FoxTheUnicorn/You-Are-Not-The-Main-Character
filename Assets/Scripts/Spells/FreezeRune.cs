@@ -21,7 +21,6 @@ public class FreezeRune : MonoBehaviour
     {
         UnarmedFreeze.Play();
         Invoke("ArmRuneAnimation", ArmingTime);
-        Sound.Play();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,6 +60,7 @@ public class FreezeRune : MonoBehaviour
 
     public void DisableEffect()
     {
+        Sound.Stop();
         triggered = false;
         ActiveFreeze.gameObject.SetActive(false);
         Invoke("KillRune", 1.0f);
