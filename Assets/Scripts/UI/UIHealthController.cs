@@ -22,9 +22,11 @@ public class UIHealthController : MonoBehaviour
 
     public void Start()
     {
+/*        
         InitHealthBar(100);
         Invoke("Debug1", 2.5f);
         Invoke("Debug2", 5.0f);
+*/
     }
 
     private void Debug1() { UpdateHealthBar(30.0f); }
