@@ -8,9 +8,14 @@ public abstract class NPCCharacter : Navigation, Character
     CharacterManager characterManager;
     public Animator animator;
 
+    private int minDamage = 20, maxDamage = 40;
+    private protected int maxHealth = 100, health;
+    public RegularEnemy regularEnemy;
+
     // Start is called before the first frame update
     public override void Start()
     {
+        health = maxHealth;
         setOwnCharacterReference(this);
         registerCharacterManager();
         characterManager.registerCharacter(this);
@@ -50,10 +55,6 @@ public abstract class NPCCharacter : Navigation, Character
         return enemyList;
     }
 
-    public virtual void hitEnemy(Character enemy) { }
-
-    public virtual void receiveHit(Character attacker) { }
-
     public virtual bool isInvisible()
     {
         return false;
@@ -75,5 +76,34 @@ public abstract class NPCCharacter : Navigation, Character
     public bool getAnimationPropertyBool(string property)
     {
         return animator.GetBool(property);
+    }
+
+    public void hitEnemy(Character enemy)
+    {
+        enemy.receiveHit(ownCharacter, (int)(minDamage + Random.Range(0, maxDamage - minDamage + 1)));
+    }
+
+    public bool receiveHit(Character enemy, int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            health = 0;
+            stopWalking();
+            regularEnemy.EnemyStruck();
+            characterManager.removeCharacter(ownCharacter);
+            disableAttack();
+            //List<Character> enemyList = ownCharacter.getEnemyList();
+            foreach (Character character in enemyList)
+            {
+                if (character is NPCCharacter)
+                {
+                    NPCCharacter npcCharacter = (NPCCharacter)character;
+                    npcCharacter.characterKilled(ownCharacter);
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

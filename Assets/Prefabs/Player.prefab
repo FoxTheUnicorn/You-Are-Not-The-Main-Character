@@ -2016,6 +2016,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6891876064882776736}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3117070765914996054}
   m_SourcePrefab: {fileID: 100100000, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}
 --- !u!1 &413919067309553491 stripped
 GameObject:
@@ -2064,6 +2067,21 @@ MonoBehaviour:
   Sources:
   - {fileID: 3366796177335346341}
   - {fileID: 3366796177335346341}
+--- !u!114 &3117070765914996054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413919067309553491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnTime: 1
+  ownCharacter: {fileID: 1245330195410350166}
+  DeathParticles: {fileID: 1763339048194758219}
 --- !u!4 &1077866222140222953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 101fed0b3a8e07b4b845cb64680fad08, type: 3}

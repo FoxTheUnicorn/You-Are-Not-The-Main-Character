@@ -9,22 +9,13 @@ public class HitBox : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject is EnemyCharacter)
-        EnemyCharacter otherCharacter;
-        if ((otherCharacter = (other.GetComponent("EnemyCharacter") as EnemyCharacter)) != null && otherCharacter.getCanHit())
-        {
-            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-            if (info.normalizedTime >= 0.3f && info.normalizedTime < 0.6)
-            {
-                colliders.Add(other);
-                Debug.Log("Addded " + other.gameObject.name);
-            }
-        }
-    }    
+        colliders.Add(other);
+        //Debug.Log("Added " + other.gameObject.name);
+    }
     void OnTriggerExit(Collider other)
     {
         colliders.Remove(other);
-        Debug.Log("Removed " + other.gameObject.name);
+        //Debug.Log("Removed " + other.gameObject.name);
     }
 
     private void OnEnable()

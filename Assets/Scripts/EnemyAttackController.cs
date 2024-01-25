@@ -5,14 +5,19 @@ using UnityEngine;
 public class EnemyAttackController : MonoBehaviour
 {
     [SerializeField] HitBox PunchHitbox;
+    [SerializeField] private EnemyCharacter ownCharacter;
 
     public void PunchAttack()
     {
         HashSet<Collider> colliders = PunchHitbox.Hit();
-        
-        foreach(Collider collider in colliders)
+        foreach (Collider collider in colliders)
         {
-            //TODO Gegner Filtern + Treffen
+            Character otherCharacter;
+            if ((((otherCharacter = (collider.GetComponent("HeroCharacter") as Character)) != null) || ((otherCharacter = (collider.GetComponent("PlayerCharacter") as Character)) != null)) && ownCharacter.getCanHit())
+            {
+                Debug.Log("Hit " + collider.gameObject.name);
+                ownCharacter.hitEnemy(otherCharacter);
+            }
         }
     }
 }

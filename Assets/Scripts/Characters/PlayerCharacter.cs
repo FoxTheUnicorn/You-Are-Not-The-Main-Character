@@ -29,6 +29,8 @@ public class PlayerCharacter : MonoBehaviour, Character
 
     private CharacterController controller;
 
+    private int maxHealth = 500, health;
+
     public Vector3 getPosition()
     {
         return transform.position;
@@ -130,6 +132,7 @@ public class PlayerCharacter : MonoBehaviour, Character
     // Start is called before the first frame update
     public void Start()
     {
+        health = maxHealth;
         controller = GetComponent<CharacterController>();
         regainSprint();
         registerCharacterManager();
@@ -157,10 +160,6 @@ public class PlayerCharacter : MonoBehaviour, Character
         return enemyList;
     }
 
-    public void hitEnemy(Character enemy) { }
-
-    public void receiveHit(Character attacker) { }
-
     public virtual bool isInvisible()
     {
         return false;
@@ -181,5 +180,20 @@ public class PlayerCharacter : MonoBehaviour, Character
     public bool getAnimationPropertyBool(string property)
     {
         return animator.GetBool(property);
+    }
+
+    public void hitEnemy(Character enemy)
+    {
+    }
+
+    public bool receiveHit(Character enemy, int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            health = 0;
+            return true;
+        }
+        return false;
     }
 }
