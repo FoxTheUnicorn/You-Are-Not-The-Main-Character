@@ -8,21 +8,6 @@ public class HeroAttackController : MonoBehaviour
     [SerializeField] HitBox SlashHitbox;
     [SerializeField] private HeroCharacter ownCharacter;
 
-    private void Start()
-    {
-        HeroAnimator = GetComponent<Animator>();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Enemy")) return;
-
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (!other.CompareTag("Enemy")) return;
-    }
-
     public void SlashAttack()
     {
         HashSet<Collider> colliders = SlashHitbox.Hit();

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSoundController : MonoBehaviour
+public class PlayerSoundController : SoundController
 {
-    // Start is called before the first frame update
+
     public void FootStep()
     {
-        //TODO
+       Play(0);
     }
 }

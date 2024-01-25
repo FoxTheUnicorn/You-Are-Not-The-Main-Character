@@ -15,7 +15,7 @@ public class MutantTestScript : MonoBehaviour
         TogglePresses("z", "RandomWalk");
         TogglePresses("x", "FoundEnemy");
         TogglePresses("c", "RandomRoar");
-        TogglePresses("v", "ReachedEnemy");
+        TogglePresses("v", "EnemyInRange");
     }
 
     void TogglePresses(string key, string boolarg)

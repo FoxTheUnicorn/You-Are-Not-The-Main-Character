@@ -13,6 +13,7 @@ public class FreezeRune : MonoBehaviour
     [SerializeField] float movementSpeedFactor = 0.25f;
     [SerializeField] float ArmingTime = 3.0f;
     [SerializeField] bool armed = false;
+    [SerializeField] AudioSource Sound;
     // Start is called before the first frame update    
     bool triggered = false;
 
@@ -20,6 +21,7 @@ public class FreezeRune : MonoBehaviour
     {
         UnarmedFreeze.Play();
         Invoke("ArmRuneAnimation", ArmingTime);
+        Sound.Play();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +30,7 @@ public class FreezeRune : MonoBehaviour
         if (triggered) return;
         //if (!other.CompareTag("Enemy")) return;
         ActiveFreeze.Play();
+        Sound.Play();
         ArmedFreeze.Stop();
         ArmedFreeze.gameObject.SetActive(false);
         triggered = true;
