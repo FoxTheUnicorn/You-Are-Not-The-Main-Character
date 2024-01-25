@@ -4,27 +4,11 @@ using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
 {
-    private Animator EnemyAnimator;
-    [SerializeField] HitBox SlashHitbox;
+    [SerializeField] HitBox PunchHitbox;
 
-    private void Start()
+    public void PunchAttack()
     {
-        EnemyAnimator = GetComponent<Animator>();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Enemy")) return;
-
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (!other.CompareTag("Enemy")) return;
-    }
-
-    public void SlashAttack()
-    {
-        HashSet<Collider> colliders = SlashHitbox.Hit();
+        HashSet<Collider> colliders = PunchHitbox.Hit();
         
         foreach(Collider collider in colliders)
         {
