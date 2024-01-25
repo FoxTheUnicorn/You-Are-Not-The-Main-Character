@@ -25,10 +25,14 @@ public class HeroAttackController : MonoBehaviour
     public void SlashAttack()
     {
         HashSet<Collider> colliders = SlashHitbox.Hit();
-        
-        foreach(Collider collider in colliders)
+
+        foreach (Collider collider in colliders)
         {
-            //TODO Gegner Filtern + Treffen
+            EnemyCharacter otherCharacter;
+            if ((otherCharacter = (collider.GetComponent("EnemyCharacter") as EnemyCharacter)) != null && otherCharacter.getCanHit())
+            {
+                Debug.Log("Hit " + collider.gameObject.name);
+            }
         }
     }
 }
