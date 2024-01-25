@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3179396682130234016}
   - component: {fileID: 6861969680752250215}
   - component: {fileID: 955049601911964007}
+  - component: {fileID: 405965894730024414}
+  - component: {fileID: 2307506386723477127}
   m_Layer: 6
   m_Name: HeroCharacter
   m_TagString: Untagged
@@ -54,7 +56,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.11
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &955049601911964007
@@ -71,7 +73,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
   animator: {fileID: 309438540688380544}
-  regularEnemy: {fileID: 8767920724264696350}
+  regularEnemy: {fileID: 0}
+--- !u!54 &405965894730024414
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497727236674053020}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &2307506386723477127
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497727236674053020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.45
+  m_Height: 1.96
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!1001 &839548348499638171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,13 +216,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroModel
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3014329779921840607, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8559182523405386151, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8767920724264696350}
     - targetCorrespondingSourceObject: {fileID: 5928434793595299291, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8496920108255620092}
@@ -215,26 +265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlashHitbox: {fileID: 3924377467404093382}
   ownCharacter: {fileID: 955049601911964007}
---- !u!1 &9038442901177726524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8559182523405386151, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
-  m_PrefabInstance: {fileID: 839548348499638171}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8767920724264696350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9038442901177726524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DespawnTime: 1
-  ownCharacter: {fileID: 3497727236674053020}
-  DeathParticles: {fileID: 4611217017464964692}
 --- !u!1001 &8549061183752302182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -292,11 +322,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
---- !u!198 &4611217017464964692 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5285546631270148146, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
-  m_PrefabInstance: {fileID: 8549061183752302182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6071677167617612491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2514895272187819181, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}

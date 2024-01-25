@@ -8448,6 +8448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefaultEnemyBig
       objectReference: {fileID: 0}
+    - target: {fileID: 6766991737644196808, guid: 6a1b8ddd6b145d447a3715096f66ada5, type: 3}
+      propertyPath: m_Center.y
+      value: 1.015
+      objectReference: {fileID: 0}
     - target: {fileID: 6861969680752250215, guid: 6a1b8ddd6b145d447a3715096f66ada5, type: 3}
       propertyPath: m_Enabled
       value: 1
