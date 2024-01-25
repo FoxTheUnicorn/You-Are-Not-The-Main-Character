@@ -14,6 +14,7 @@ public class HealingSpell : MonoBehaviour
     [SerializeField] float HeroHealingFlat = 0.0f; //Flat
     [SerializeField] int HealingBursts = 6;
     [SerializeField] float HealingDuration = 5.5f;
+    [SerializeField] AudioSource Sound;
 
     float HealingBurstDelay;
     int BurstsSent = 0;
@@ -23,7 +24,7 @@ public class HealingSpell : MonoBehaviour
     private void Start()
     {
         HealingBurstDelay = HealingDuration / HealingBursts;
-        //TODO Bee SFX
+        Sound.Play(); 
         Invoke("HealingBurst", HealingBurstDelay);
     }
 
@@ -35,7 +36,7 @@ public class HealingSpell : MonoBehaviour
             return;
         }
         if(BurstsSent > 0) HealingBurstEffect.Play();
-        //TODO Bee SFX
+        Sound.Play();
         HealEntities();
         BurstsSent++;
         Invoke("HealingBurst", HealingBurstDelay);
