@@ -7,6 +7,8 @@ public class VolumeSlider : SliderPercentage
 {
     [SerializeField] private float MinVolume = -50.0f;
     [SerializeField] private float MaxVolume = 5.0f;
+
+
     public AudioMixer mixer;
     new private void Start()
     {
