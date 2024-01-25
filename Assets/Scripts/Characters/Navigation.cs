@@ -258,7 +258,9 @@ public abstract class Navigation : MonoBehaviour
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 10f);
+            Vector3 lookDirection = attackedCharacter.getPosition() - transform.position;
+            lookDirection.y = 0f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 10f);
             ownCharacter.setAnimationPropertyBool("EnemyInRange", true);
             Invoke("enableHit", 0.2f);
         }
