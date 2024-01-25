@@ -177,4 +177,9 @@ public class PlayerCharacter : MonoBehaviour, Character
     {
         animator.SetFloat(property, value);
     }
+
+    public bool getAnimationPropertyBool(string property)
+    {
+        return animator.GetBool(property);
+    }
 }

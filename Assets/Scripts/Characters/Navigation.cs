@@ -30,6 +30,8 @@ public abstract class Navigation : MonoBehaviour
 
     private float time = 0f, enemySightedTime = 0f;
 
+    bool canHit;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -226,10 +228,12 @@ public abstract class Navigation : MonoBehaviour
             navMeshAgent.ResetPath();
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 10f);
             ownCharacter.setAnimationPropertyBool("EnemyInRange", true);
+            Invoke("enableHit", 0.2f);
         }
         else
         {
             ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+            canHit = false;
             if (attackedCharacter != null)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(attackedCharacter.getPosition() - transform.position), Time.deltaTime * 1f);
             if (checkIfShouldAttackCounter >= 10)
@@ -258,6 +262,17 @@ public abstract class Navigation : MonoBehaviour
             else
                 Invoke("setRandomTargetWithinEllipseInternal", restingTime);
         }
+    }
+
+    void enableHit()
+    {
+        if (ownCharacter.getAnimationPropertyBool("EnemyInRange"))
+            canHit = true;
+    }
+
+    public bool getCanHit()
+    {
+        return canHit;
     }
 
     public virtual void FixedUpdate()

@@ -71,4 +71,9 @@ public abstract class NPCCharacter : Navigation, Character
     {
         animator.SetFloat(property, value);
     }
+
+    public bool getAnimationPropertyBool(string property)
+    {
+        return animator.GetBool(property);
+    }
 }

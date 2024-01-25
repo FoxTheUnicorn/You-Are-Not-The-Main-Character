@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
+  rigidbody: {fileID: 3819929067021515934}
   animator: {fileID: 4498628305834930361}
 --- !u!195 &6861969680752250215
 NavMeshAgent:
@@ -376,6 +377,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+--- !u!54 &3819929067021515934 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 4382869988480225866, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
+  m_PrefabInstance: {fileID: 707074174267698900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &4498628305834930361 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4016752006644031085, guid: 35c9f5ce89420bb4dae30c73148838fe, type: 3}
