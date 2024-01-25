@@ -6,12 +6,12 @@ using TMPro;
 
 public class SliderPercentage : MonoBehaviour
 {
-    [SerializeField] Slider mainSlider;
-    [SerializeField] TMP_Text PercentageText;
-    [SerializeField] string pref;
-    float value = 0.0f;
+    public Slider mainSlider;
+    public TMP_Text PercentageText;
+    public string pref;
+    protected float value = 0.0f;
 
-    private void Start()
+    protected void Start()
     {
         value = PlayerPrefs.GetFloat(pref);
         mainSlider.value = value * mainSlider.maxValue;
