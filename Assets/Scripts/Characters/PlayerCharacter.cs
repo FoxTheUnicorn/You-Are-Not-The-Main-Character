@@ -30,8 +30,11 @@ public class PlayerCharacter : MonoBehaviour, Character
     private CharacterController controller;
 
     private int maxHealth = 500, health;
+    private float delayedHealth = 0f;
     private Character ownCharacter;
     public RegularEnemy regularEnemy;
+
+    private UIHealthController uiHealthController;
 
     public Vector3 getPosition()
     {
@@ -146,11 +149,29 @@ public class PlayerCharacter : MonoBehaviour, Character
         registerCharacterManager();
         characterManager.registerCharacter(this);
         setEnemyList(characterManager.getEnemyCharacterList(this));
+
+        uiHealthController = GameObject.Find("PlayerHPBar").GetComponent<UIHealthController>();
+        uiHealthController.InitHealthBar(maxHealth);
     }
 
     void FixedUpdate()
     {
         MovePlayer();
+    }
+
+    void Update()
+    {
+        uiHealthController.UpdateHealthBar(delayedHealth);
+        if (delayedHealth > health)
+        {
+            delayedHealth -= (maxHealth / 2f) * Time.deltaTime;
+            if (delayedHealth < health) delayedHealth = health;
+        }
+        else if (delayedHealth < health)
+        {
+            delayedHealth += (maxHealth / 2f) * Time.deltaTime;
+            if (delayedHealth > health) delayedHealth = health;
+        }
     }
 
     private void registerCharacterManager()

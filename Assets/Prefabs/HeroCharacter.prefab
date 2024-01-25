@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 955049601911964007}
   - component: {fileID: 405965894730024414}
   - component: {fileID: 2307506386723477127}
+  - component: {fileID: 2036026934541988356}
   m_Layer: 6
   m_Name: HeroCharacter
   m_TagString: Untagged
@@ -73,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
   animator: {fileID: 309438540688380544}
-  regularEnemy: {fileID: 0}
+  regularEnemy: {fileID: 2036026934541988356}
 --- !u!54 &405965894730024414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,6 +125,21 @@ CapsuleCollider:
   m_Height: 1.96
   m_Direction: 1
   m_Center: {x: 0, y: 0.98, z: 0}
+--- !u!114 &2036026934541988356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497727236674053020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724091fc4bb8009458a443bfac0b093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DespawnTime: 1
+  ownCharacter: {fileID: 3497727236674053020}
+  DeathParticles: {fileID: 4611217017464964692}
 --- !u!1001 &839548348499638171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322,6 +338,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
+--- !u!198 &4611217017464964692 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5285546631270148146, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}
+  m_PrefabInstance: {fileID: 8549061183752302182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6071677167617612491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2514895272187819181, guid: 2337c5e53be8d274faf1443cfc6fad96, type: 3}

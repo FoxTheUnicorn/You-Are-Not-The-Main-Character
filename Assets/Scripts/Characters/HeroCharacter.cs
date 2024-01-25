@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class HeroCharacter : NPCCharacter
 {
+    public int startHealth = 1000;
+    private float delayedHealth = 0f;
+    private UIHealthController uiHealthController;
     // Start is called before the first frame update
     public override void Start()
     {
-        maxHealth = 100;
+        maxHealth = startHealth;
+        uiHealthController = GameObject.Find("HeroHPBar").GetComponent<UIHealthController>();
+        uiHealthController.InitHealthBar(maxHealth);
         base.Start();
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        uiHealthController.UpdateHealthBar(delayedHealth);
+        if (delayedHealth > health)
+        {
+            delayedHealth -= (maxHealth / 2f) * Time.deltaTime;
+            if (delayedHealth < health) delayedHealth = health;
+        }
+        else if (delayedHealth < health)
+        {
+            delayedHealth += (maxHealth / 2f) * Time.deltaTime;
+            if (delayedHealth > health) delayedHealth = health;
+        }
         base.Update();
     }
 
