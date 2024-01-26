@@ -75,6 +75,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 6861969680752250215}
   animator: {fileID: 309438540688380544}
   regularEnemy: {fileID: 0}
+  startHealth: 1000
 --- !u!54 &405965894730024414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,6 +177,18 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300002, guid: cd1aca553b60e144fb609d7b0fecf4e0, type: 2}
+    - target: {fileID: 1965209632122234221, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965209632122234221, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965209632122234221, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3014329779921840607, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
       propertyPath: m_Radius
       value: 0.45
