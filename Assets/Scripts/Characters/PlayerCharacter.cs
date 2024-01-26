@@ -20,7 +20,7 @@ public class PlayerCharacter : MonoBehaviour, Character
     [SerializeField] private float sprintCooldown;   //How long before sprint starts regenerating
 
     [SerializeField] private Animator animator;
-    [SerializeField] private UIHealthController uiHealthController;
+    private UIHealthController uiHealthController;
 
     private bool isStealth = false;
 

@@ -8,7 +8,7 @@ public abstract class NPCCharacter : Navigation, Character
     CharacterManager characterManager;
     public Animator animator;
 
-    private int minDamage = 20, maxDamage = 40;
+    private protected int minDamage = 10, maxDamage = 20;
     private protected int maxHealth = 100, health;
     public RegularEnemy regularEnemy;
 
