@@ -20,11 +20,13 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private int WaveCounter;
     [SerializeField] private EnemyWave currentWave;
+    private int EnemiesSpawned = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        charManager = GameObject.Find("CharacterManager").GetComponent<CharacterManager>();
         WaveCounter = 1;
         ResolveEnemySpawners();
         StartWave(WaveCounter);
@@ -32,6 +34,7 @@ public class GameController : MonoBehaviour
 
     public void StartWave(int wave)
     {
+        EnemiesSpawned = 0;
         currentWave = new EnemyWave(Waves[wave-1]);
         StartGameLoop();
     }
@@ -39,6 +42,7 @@ public class GameController : MonoBehaviour
     public void StartNextWave()
     {
         WaveCounter++;
+        EnemiesSpawned = 0;
         currentWave = new EnemyWave(Waves[WaveCounter - 1]);
         Invoke("StartGameLoop", WaveCooldown);
     }
@@ -83,6 +87,7 @@ public class GameController : MonoBehaviour
         if(val)
         {
             currentWave.Enemies[0].Spawn();
+            EnemiesSpawned++;
         }
     }
 
