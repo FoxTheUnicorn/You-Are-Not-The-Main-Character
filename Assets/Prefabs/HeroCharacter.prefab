@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
   animator: {fileID: 309438540688380544}
-  regularEnemy: {fileID: 0}
+  regularEnemy: {fileID: 2036026934541988356}
   startHealth: 1000
 --- !u!54 &405965894730024414
 Rigidbody:
@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8311677708100601467, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
+      propertyPath: ownCharacter
+      value: 
+      objectReference: {fileID: 955049601911964007}
     - target: {fileID: 8559182523405386151, guid: e0f135d994732064eb95132fc4da8f9a, type: 3}
       propertyPath: m_Name
       value: HeroModel
