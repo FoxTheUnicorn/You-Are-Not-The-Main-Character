@@ -10,10 +10,10 @@ public class HeroCharacter : NPCCharacter
     // Start is called before the first frame update
     public override void Start()
     {
+        maxHealth = startHealth;
         uiHealthController = GameObject.Find("HeroHPBar").GetComponent<UIHealthController>();
         uiHealthController.InitHealthBar(maxHealth);
         base.Start();
-        maxHealth = startHealth;
         minDamage = 40;
         maxDamage = 60;
     }
