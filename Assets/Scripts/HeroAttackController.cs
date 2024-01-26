@@ -15,7 +15,7 @@ public class HeroAttackController : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             EnemyCharacter otherCharacter;
-            if ((otherCharacter = (collider.GetComponent("EnemyCharacter") as EnemyCharacter)) != null && ownCharacter.getCanHit())
+            if ((otherCharacter = (collider.transform.parent.gameObject.GetComponent("EnemyCharacter") as EnemyCharacter)) != null && ownCharacter.getCanHit())
             {
                 //Debug.Log("Hit " + collider.gameObject.name);
                 ownCharacter.hitEnemy(otherCharacter);

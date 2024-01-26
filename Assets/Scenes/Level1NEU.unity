@@ -761,7 +761,12 @@ MonoBehaviour:
   Waves:
   - Enemies:
     - EnemyType: {fileID: 3497727236674053020, guid: 47ee511a491ec8e41be7b99b91643433, type: 3}
-      Amount: 20
+      Amount: 4
+  - Enemies:
+    - EnemyType: {fileID: 3497727236674053020, guid: 47ee511a491ec8e41be7b99b91643433, type: 3}
+      Amount: 5
+    - EnemyType: {fileID: 3497727236674053020, guid: 6a1b8ddd6b145d447a3715096f66ada5, type: 3}
+      Amount: 1
   SpawnInterval: 1
   WaveCooldown: 10
   uiWaveController: {fileID: 1309564349}
@@ -1943,6 +1948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 3907653792547092221, guid: d1d1ee9bc6f9c204cb17ee90e1eaed87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2143,6 +2152,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3428fa78e501c44449ad0451fa2e652c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBadActorDeafeated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 734869695}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: EnemyDeafeated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &2138155572
 Transform:
   m_ObjectHideFlags: 0

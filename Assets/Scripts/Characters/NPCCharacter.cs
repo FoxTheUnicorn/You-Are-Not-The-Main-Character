@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class NPCCharacter : Navigation, Character
 {
+    public UnityEvent OnDeafeat;
     private List<Character> enemyList = new List<Character>();
     CharacterManager characterManager;
     public Animator animator;
@@ -88,6 +90,7 @@ public abstract class NPCCharacter : Navigation, Character
         health -= damage;
         if (health <= 0)
         {
+            OnDeafeat.Invoke();
             health = 0;
             stopWalking();
             regularEnemy.EnemyStruck();

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterManager : MonoBehaviour
 {
+    public UnityEvent OnBadActorDeafeated;
     private List<Character> goodCharacterList = new List<Character>(), badCharacterList = new List<Character>();
 
     public void registerCharacter(Character newCharacter)
@@ -17,7 +19,11 @@ public class CharacterManager : MonoBehaviour
     public void removeCharacter(Character character)
     {
         goodCharacterList.Remove(character);
-        badCharacterList.Remove(character);
+        if (badCharacterList.Contains(character))
+        {
+            OnBadActorDeafeated.Invoke();
+            badCharacterList.Remove(character);
+        }
     }
 
     public List<Character> getGoodCharacterList()
@@ -43,13 +49,5 @@ public class CharacterManager : MonoBehaviour
             return badCharacterList;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

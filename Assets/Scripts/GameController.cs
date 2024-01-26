@@ -20,8 +20,15 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private int WaveCounter;
     [SerializeField] private EnemyWave currentWave;
-    private int EnemiesSpawned = 0;
 
+    private int EnemiesTotal;
+    private int EnemiesDefeated = 0;
+
+
+    public void EnemyDeafeated()
+    {
+        EnemiesDefeated++;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +41,7 @@ public class GameController : MonoBehaviour
 
     public void StartWave(int wave)
     {
-        EnemiesSpawned = 0;
+        EnemiesDefeated = 0;
         currentWave = new EnemyWave(Waves[wave-1]);
         StartGameLoop();
     }
@@ -42,14 +49,15 @@ public class GameController : MonoBehaviour
     public void StartNextWave()
     {
         WaveCounter++;
-        EnemiesSpawned = 0;
+        EnemiesDefeated = 0;
         currentWave = new EnemyWave(Waves[WaveCounter - 1]);
         Invoke("StartGameLoop", WaveCooldown);
     }
 
     private void StartGameLoop()
     {
-        uiWaveController.StartNewWave(WaveCounter, currentWave.GetEnemyCount());
+        EnemiesTotal = currentWave.GetEnemyCount();
+        uiWaveController.StartNewWave(WaveCounter, EnemiesTotal);
         InvokeRepeating("GameLoop", 0.0f, SpawnInterval);
     }
 
@@ -60,7 +68,8 @@ public class GameController : MonoBehaviour
 
     private void GameLoop()
     {
-        if(currentWave.Enemies.Count <= 0) //No Enemies in Spawn Queue
+        uiWaveController.UpdateData(EnemiesTotal - EnemiesDefeated);
+        if (currentWave.Enemies.Count <= 0) //No Enemies in Spawn Queue
         {
             if(charManager.GetBadCharacterCount() <= 0) {   //Wave Cleared
                 StopGameLoop();
@@ -87,7 +96,6 @@ public class GameController : MonoBehaviour
         if(val)
         {
             currentWave.Enemies[0].Spawn();
-            EnemiesSpawned++;
         }
     }
 
