@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
     private void StopGameLoop()
     {
+        uiWaveController.InactiveWave();
         CancelInvoke();
     }
 
