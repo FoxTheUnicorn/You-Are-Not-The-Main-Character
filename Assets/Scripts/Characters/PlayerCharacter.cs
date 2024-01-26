@@ -133,6 +133,11 @@ public class PlayerCharacter : MonoBehaviour, Character
         animator.SetBool("Stealth", false);
     }
 
+    public bool getIsStealth()
+    {
+        return isStealth;
+    }
+
     public void setSprintDuration(float duration)
     {
         if (health <= 0) return;

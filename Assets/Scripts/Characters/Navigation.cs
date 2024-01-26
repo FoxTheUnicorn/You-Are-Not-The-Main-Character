@@ -212,13 +212,12 @@ public abstract class Navigation : MonoBehaviour
         {
             attackedCharacter = null;
 
-            if (ownCharacter is HeroCharacter)
-                didFollowPlayer = true;
+            didFollowPlayer = true;
         }
         foreach (Character character in enemyList)
         {
             float radius = (character.getPosition() - transform.position).magnitude;
-            if (radius < smallestRadius)
+            if (radius < smallestRadius && (!(character is PlayerCharacter) || !((PlayerCharacter)character).getIsStealth()))
             {
                 smallestRadius = radius;
                 attackedCharacter = character;
@@ -250,6 +249,31 @@ public abstract class Navigation : MonoBehaviour
                 }
             }
             //PlayerCharacter playerScript = player.GetComponent<PlayerCharacter>();
+
+        }
+        else if (attackedCharacter == null && didFollowPlayer)
+        {
+            navMeshAgent.isStopped = true;
+            navMeshAgent.ResetPath();
+            ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+            ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
+            ownCharacter.setAnimationPropertyBool("RandomRoar", false);
+            ownCharacter.setAnimationPropertyBool("RandomWalk", false);
+            enemySightedTime = 0f;
+
+            /*if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE)
+                statusTargetSetting = SETTINGTARGETWITHINRECTANGLE;
+            else if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)
+                statusTargetSetting = SETTINGTARGETWITHINELLIPSE;
+            else
+                statusTargetSetting = TARGETSETTINGINACTIVE;*/
+
+            statusTargetSetting = TARGETSETTINGPENDING;
+            float restingTime = restingTimeMin + Random.Range(0f, .5f) * (restingTimeMax - restingTimeMin);
+            if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE)
+                Invoke("setRandomTargetWithinRectangleInternal", restingTime);
+            else
+                Invoke("setRandomTargetWithinEllipseInternal", restingTime);
 
         }
         if (attackedCharacter != null)
@@ -298,6 +322,12 @@ public abstract class Navigation : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 10f);
             ownCharacter.setAnimationPropertyBool("EnemyInRange", true);
             Invoke("enableHit", 0.2f);
+
+            if ((attackedCharacter is PlayerCharacter) && (checkIfShouldAttackCounter >= 10))
+            {
+                checkIfShouldAttackCounter = 0;
+                checkIfShouldAttack();
+            }
         }
         else
         {
