@@ -15,16 +15,19 @@ public class EnemyPositionIndicator : MonoBehaviour
     void Update()
     {
         Vector3 position = player.transform.position;
-        position.y = .15f;
-        transform.position = position;
+        position.y = -1000000f;
+
 
         Vector3 closestEnemyPosition = player.GetComponent<PlayerCharacter>().getClosestEnemyPosition();
 
         if (closestEnemyPosition.magnitude < 100000f)
         {
+            position.y = .15f;
             Vector3 lookDirection = closestEnemyPosition - player.transform.position;
             lookDirection.y = 0f;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
         }
+
+        transform.position = position;
     }
 }
