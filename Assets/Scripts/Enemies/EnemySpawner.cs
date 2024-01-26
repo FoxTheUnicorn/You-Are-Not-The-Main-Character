@@ -39,8 +39,6 @@ public class EnemySpawner : MonoBehaviour
     public float DistanceFromObject(GameObject obj)
     {
         float length = (obj.transform.position - transform.position).sqrMagnitude;
-        Debug.Log("Player Position" + obj.transform.position + " | Spawner Position " + transform.position);
-        Debug.Log(length);
         return length;
     }
 

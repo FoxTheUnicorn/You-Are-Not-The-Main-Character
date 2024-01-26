@@ -16,7 +16,7 @@ public class HealingSpell : MonoBehaviour
     [SerializeField] float HealingDuration = 5.5f;
     [SerializeField] AudioSource Sound;
 
-    float HealingBurstDelay;
+    public float HealingBurstDelay;
     int BurstsSent = 0;
 
     [SerializeField] List<GameObject> Entities = new List<GameObject>();    //Don't add anything to this
@@ -36,7 +36,6 @@ public class HealingSpell : MonoBehaviour
             return;
         }
         if(BurstsSent > 0) HealingBurstEffect.Play();
-        Sound.Play();
         HealEntities();
         BurstsSent++;
         Invoke("HealingBurst", HealingBurstDelay);
@@ -62,6 +61,7 @@ public class HealingSpell : MonoBehaviour
                 script.Heal((HeroHealingMaxHP * MaxHealth) + HeroHealingFlat);
             }*/
             Character characterScript = Entity.GetComponent<Character>();
+            Debug.Log("Healing " + Entity.gameObject.name);
             float MaxHealth = characterScript.getMaxHealth();  //GetMaxHealth
             if (characterScript is EnemyCharacter)
             {
@@ -95,11 +95,13 @@ public class HealingSpell : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!isHealable(other.gameObject)) return;
+        Debug.Log("Entered: " + other.gameObject.name);
         Entities.Add(other.gameObject);
     }
 
     public void KillObject()
     {
+        Sound.Stop();
         Destroy(gameObject);
     }
 }

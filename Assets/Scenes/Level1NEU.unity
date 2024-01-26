@@ -1016,7 +1016,8 @@ PrefabInstance:
       propertyPath: sprintRegenerationSpeed
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8445528726072364040, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
