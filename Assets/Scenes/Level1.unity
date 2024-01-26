@@ -4497,7 +4497,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.2
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8adbfb5acd337d44b85db3ccda0af2eb, type: 2}
   m_BuildHeightMesh: 0
@@ -11378,6 +11378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3428fa78e501c44449ad0451fa2e652c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBadActorDeafeated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1369352546
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -40,9 +40,11 @@ public class FreezeRune : MonoBehaviour
     {
         if (!triggered) return;
         //TODO Jörn
-        /* EnemyScript script = other.GetComponent<EnemyScript>();
+        EnemyCharacter script = other.gameObject.transform.parent.GetComponent<EnemyCharacter>();
         if (script == null) return;
-        script.SetSpeed(script.GetSpeed * movementSpeedFactor) */
+        //script.SetSpeed(script.GetSpeed * movementSpeedFactor) */
+        //Debug.Log("Test");
+        script.slowDown();
     }
 
     public void ArmRuneAnimation()

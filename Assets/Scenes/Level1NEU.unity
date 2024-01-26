@@ -898,7 +898,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.2
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 0af52c4389e2dde4a82d1c79f53c2740, type: 2}
   m_BuildHeightMesh: 0
@@ -2335,8 +2335,35 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2874143787900948070, guid: 0539990ed11ed1747af9146d595a06ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 749473800}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3883735603879246149, guid: 0539990ed11ed1747af9146d595a06ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3633349457409716092}
   m_SourcePrefab: {fileID: 100100000, guid: 0539990ed11ed1747af9146d595a06ce, type: 3}
+--- !u!1 &3633349457409716091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3883735603879246149, guid: 0539990ed11ed1747af9146d595a06ce, type: 3}
+  m_PrefabInstance: {fileID: 3633349457409716090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3633349457409716092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633349457409716091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

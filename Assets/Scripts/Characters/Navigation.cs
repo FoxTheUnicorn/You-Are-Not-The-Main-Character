@@ -35,6 +35,8 @@ public abstract class Navigation : MonoBehaviour
 
     private float initialNavMeshSpeed, navMeshSpeedRunMultiplier = 2f;
 
+    private float slowDownFactor = 1f;
+
     public void characterKilled(Character character)
     {
         if (character == attackedCharacter)
@@ -53,7 +55,7 @@ public abstract class Navigation : MonoBehaviour
             ownCharacter.setAnimationPropertyBool("RandomRoar", false);
             ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
             ownCharacter.setAnimationPropertyBool("EnemySighted", false);
-            navMeshAgent.speed = initialNavMeshSpeed;
+            navMeshAgent.speed = initialNavMeshSpeed * slowDownFactor;
         }
     }
 
@@ -237,14 +239,14 @@ public abstract class Navigation : MonoBehaviour
                 else
                 {
                     navMeshAgent.SetDestination(attackedCharacter.getPosition());
-                    navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier;
+                    navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier * slowDownFactor;
                 }
             }
             else
             {
                 navMeshAgent.SetDestination(attackedCharacter.getPosition());
                 ownCharacter.setAnimationPropertyBool("EnemySighted", true);
-                navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier;
+                navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier * slowDownFactor;
             }
         }
     }
@@ -279,7 +281,7 @@ public abstract class Navigation : MonoBehaviour
 
         if (statusTargetSetting != ENEMYTARGET && navMeshAgent.hasPath && (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE || statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)) navMeshAgent.isStopped = false;
         ownCharacter.setAnimationPropertyBool("RandomWalk", navMeshAgent.hasPath /*&& !navMeshAgent.isStopped*/);
-        ownCharacter.setAnimationPropertyFloat("WalkingSpeed", navMeshAgent.velocity.magnitude / navMeshAgent.speed);
+        ownCharacter.setAnimationPropertyFloat("WalkingSpeed", navMeshAgent.velocity.magnitude / (navMeshAgent.speed * slowDownFactor));
 
         if (statusTargetSetting == SETTINGTARGETWITHINRECTANGLE)
             setRandomTargetWithinRectangleInternal();
@@ -311,5 +313,19 @@ public abstract class Navigation : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
+    }
+
+    public void slowDown()
+    {
+        float slowDownInc = 0.987f;
+        slowDownFactor *= slowDownInc;
+        if (slowDownFactor < 0.5f) slowDownFactor = 0.5f;
+        navMeshAgent.speed = initialNavMeshSpeed * slowDownFactor;
+        if (attackedCharacter != null) navMeshAgent.speed *= navMeshSpeedRunMultiplier;
+    }
+
+    public float getSlowDownFactor()
+    {
+        return slowDownFactor;
     }
 }

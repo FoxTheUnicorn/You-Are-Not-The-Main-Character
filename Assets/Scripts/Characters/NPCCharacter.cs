@@ -34,6 +34,7 @@ public abstract class NPCCharacter : Navigation, Character
     public override void Update()
     {
         base.Update();
+        animator.speed = getSlowDownFactor();
     }
 
     public override void FixedUpdate()
@@ -82,7 +83,7 @@ public abstract class NPCCharacter : Navigation, Character
 
     public void hitEnemy(Character enemy)
     {
-        enemy.receiveHit(ownCharacter, (int)(minDamage + Random.Range(0, maxDamage - minDamage + 1)));
+        enemy.receiveHit(ownCharacter, (int)((minDamage + Random.Range(0, maxDamage - minDamage + 1)) * getSlowDownFactor()));
     }
 
     public bool receiveHit(Character enemy, int damage)
