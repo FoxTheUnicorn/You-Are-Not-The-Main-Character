@@ -110,8 +110,6 @@ public abstract class NPCCharacter : Navigation, Character
                     npcCharacter.characterKilled(ownCharacter);
                 }
             }
-            if (ownCharacter is HeroCharacter || ownCharacter is PlayerCharacter)
-                SceneManager.LoadScene("GameOverMenu");
             return true;
         }
         return false;

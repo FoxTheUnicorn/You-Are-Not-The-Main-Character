@@ -259,7 +259,6 @@ public class PlayerCharacter : MonoBehaviour, Character
                     npcCharacter.characterKilled(ownCharacter);
                 }
             }
-            SceneManager.LoadScene("GameOverMenu");
             return true;
         }
         return false;

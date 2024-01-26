@@ -24703,7 +24703,7 @@ MonoBehaviour:
   ActiveFreeze: {fileID: 226479288258396541}
   movementSpeedFactor: 0.25
   ArmingTime: 2
-  armed: 1
+  armed: 0
   Sound: {fileID: 8519202019109829110}
 --- !u!135 &6236079917424386806
 SphereCollider:
@@ -24724,7 +24724,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8
+  m_Radius: 3.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6172371868117208900
 GameObject:

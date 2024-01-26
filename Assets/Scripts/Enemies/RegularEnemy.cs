@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class RegularEnemy : MonoBehaviour
 {
@@ -20,10 +21,6 @@ public class RegularEnemy : MonoBehaviour
     public void EnemyStruck()
     {
         DeathParticles.Play();
-        //EnemyRigidbody.freezeRotation = false;
-        //EnemyRigidbody.freezePosition = false;
-        EnemyRigidbody.constraints = RigidbodyConstraints.None;
-        EnemyRigidbody.AddTorque(RandomTorque());
         Invoke("CommenceDeath", DespawnTime);
         DeathParticles.Play();
     }
@@ -48,8 +45,16 @@ public class RegularEnemy : MonoBehaviour
 
     private void RemoveCharacter()
     {
-        if (ownCharacter.name != "Player")
+        if (ownCharacter.CompareTag("Enemy"))
             Destroy(ownCharacter);
+        if (ownCharacter.CompareTag("Hero")) GameOver();
+        if (ownCharacter.CompareTag("Player")) GameOver();
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene("GameOverMenu");
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Update()
