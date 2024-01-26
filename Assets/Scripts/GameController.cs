@@ -13,21 +13,26 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<EnemySpawner> EnemySpawnerList = new List<EnemySpawner>();
     [SerializeField] private List<EnemyWave> Waves = new List<EnemyWave>();
     [SerializeField] private float SpawnInterval = 1.0f;
+    [SerializeField] private float WaveCooldown = 10.0f;
+    [SerializeField] public UIWaveController uiWaveController;
 
+    [SerializeField] private int WaveCounter;
     [SerializeField] private EnemyWave currentWave;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        WaveCounter = 1;
         ResolveEnemySpawners();
-        StartWave(1);
+        StartWave(WaveCounter);
         StartGameLoop();
     }
 
     public void StartWave(int wave)
     {
         currentWave = new EnemyWave(Waves[wave-1]);
+        uiWaveController.StartNewWave(wave, currentWave.GetEnemyCount());
     }
 
     private void StartGameLoop()
@@ -44,33 +49,22 @@ public class GameController : MonoBehaviour
     {
         foreach (EnemySpawner eSpawn in EnemySpawnerList)
         {
-            GameObject enemy = GetEnemyType();
-            if(enemy != null)
-            {
-                bool val = eSpawn.SpawnEnemy(enemy, Player);
-                if (val) SuccessfulSpawn();
-            }
-            else
-            {
-                OnWaveOver.Invoke();
-                break;
-            }
+            SpawnEnemy(eSpawn);
         }
     }
 
-    private GameObject GetEnemyType()
+    private void SpawnEnemy(EnemySpawner spawner)
     {
-        if (currentWave.Enemies.Count == 0) return null;
-        return currentWave.Enemies[0].EnemyType;
-    }
-
-    private void SuccessfulSpawn()
-    {
-        if (currentWave.Enemies.Count == 0) return;
-        currentWave.Enemies[0].Spawn();
-        if (currentWave.Enemies[0].GetRemainingSpawns() <= 0)
+        if (currentWave.Enemies.Count <= 0) return;             //If no Enemies left to spawn
+        if (currentWave.Enemies[0].GetRemainingSpawns() <= 0)   //If no Enemies from current Group left to spawn
         {
             currentWave.Enemies.RemoveAt(0);
+            if (currentWave.Enemies.Count <= 0) return;
+        }
+        bool val = spawner.SpawnEnemy(currentWave.Enemies[0].EnemyType, Player);
+        if(val)
+        {
+            currentWave.Enemies[0].Spawn();
         }
     }
 
@@ -95,6 +89,16 @@ public class GameController : MonoBehaviour
         {
             this.Enemies = enemies;
         }
+
+        public int GetEnemyCount()
+        {
+            int outVar = 0;
+            foreach(EnemyWaveEntry entry in Enemies)
+            {
+                outVar += entry.Amount;
+            }
+            return outVar;
+        }
     }
 
     [System.Serializable]
@@ -102,7 +106,7 @@ public class GameController : MonoBehaviour
     {
         public GameObject EnemyType;
         [Range(1, 50)] public int Amount;
-        [SerializeField] private int Spawned;
+        private int Spawned;
         public EnemyWaveEntry(GameObject EnemyType, int Amount) 
         {
             this.EnemyType = EnemyType;

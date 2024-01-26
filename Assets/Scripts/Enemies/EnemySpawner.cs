@@ -10,10 +10,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistanceToPlayer = 20.0f;  //The minimum distance to the Player to Spawn an Enemy
     [SerializeField] private float spawnCooldown = 8.0f;        //Time before spawner may spawn another Enemy
 
+    private float SqrMagnitudeDistancePlayer;
+
     private bool OnCooldown = false;
 
     public void Start()
     {
+        SqrMagnitudeDistancePlayer = minDistanceToPlayer * minDistanceToPlayer;
         if (enemyParentGameObject == null)
         {
             enemyParentGameObject = GameObject.Find("Enemies").transform;
@@ -35,7 +38,10 @@ public class EnemySpawner : MonoBehaviour
 
     public float DistanceFromObject(GameObject obj)
     {
-        return (obj.transform.position - this.transform.position).sqrMagnitude;
+        float length = (obj.transform.position - transform.position).sqrMagnitude;
+        Debug.Log("Player Position" + obj.transform.position + " | Spawner Position " + transform.position);
+        Debug.Log(length);
+        return length;
     }
 
     public void StartCooldown()
@@ -47,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
     {
         //If spawner still on cooldown or player to close to enemy
         if (OnCooldown) return false;
-        if (DistanceFromObject(player) < minDistanceToPlayer) return false;
+        if (DistanceFromObject(player) < SqrMagnitudeDistancePlayer) return false;
 
         StartCooldown();
 

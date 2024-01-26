@@ -21,9 +21,7 @@ public class UIWaveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InactiveWave();
-/*        Invoke("Debug1", 2.0f);
-        Invoke("Debug2", 4.0f);*/
+
     }
 
     public void InactiveWave()
