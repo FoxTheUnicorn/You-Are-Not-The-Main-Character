@@ -245,6 +245,6 @@ public class PlayerCharacter : MonoBehaviour, Character
     public void heal(float amount)
     {
         health += (int)amount;
-        if (amount > maxHealth) amount = maxHealth;
+        if (health > maxHealth) health = maxHealth;
     }
 }
