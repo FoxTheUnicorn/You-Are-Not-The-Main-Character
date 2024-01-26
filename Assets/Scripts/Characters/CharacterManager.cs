@@ -30,6 +30,11 @@ public class CharacterManager : MonoBehaviour
         return badCharacterList;
     }
 
+    public int GetBadCharacterCount()
+    {
+        return badCharacterList.Count;
+    }
+
     public List<Character> getEnemyCharacterList(Character ownCharacter)
     {
         if (ownCharacter is EnemyCharacter)

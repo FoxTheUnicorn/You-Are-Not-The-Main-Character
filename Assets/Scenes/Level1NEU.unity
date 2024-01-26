@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -253,7 +253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -338,7 +338,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -412,7 +412,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -539,7 +539,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -613,7 +613,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -856,7 +856,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -930,7 +930,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.39
+      value: 3.21
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -938,7 +938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.61
+      value: -6.34
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1037,7 +1037,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1111,7 +1111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1185,7 +1185,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1259,7 +1259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1441,7 +1441,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1515,7 +1515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1589,7 +1589,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1679,7 +1679,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1753,7 +1753,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1827,7 +1827,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x

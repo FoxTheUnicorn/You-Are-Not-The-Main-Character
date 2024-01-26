@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private float WaveCooldown = 10.0f;
     [SerializeField] public UIWaveController uiWaveController;
 
+    private CharacterManager charManager;
+
     [SerializeField] private int WaveCounter;
     [SerializeField] private EnemyWave currentWave;
 
@@ -26,17 +28,24 @@ public class GameController : MonoBehaviour
         WaveCounter = 1;
         ResolveEnemySpawners();
         StartWave(WaveCounter);
-        StartGameLoop();
     }
 
     public void StartWave(int wave)
     {
         currentWave = new EnemyWave(Waves[wave-1]);
-        uiWaveController.StartNewWave(wave, currentWave.GetEnemyCount());
+        StartGameLoop();
+    }
+
+    public void StartNextWave()
+    {
+        WaveCounter++;
+        currentWave = new EnemyWave(Waves[WaveCounter - 1]);
+        Invoke("StartGameLoop", WaveCooldown);
     }
 
     private void StartGameLoop()
     {
+        uiWaveController.StartNewWave(WaveCounter, currentWave.GetEnemyCount());
         InvokeRepeating("GameLoop", 0.0f, SpawnInterval);
     }
 
@@ -47,6 +56,15 @@ public class GameController : MonoBehaviour
 
     private void GameLoop()
     {
+        if(currentWave.Enemies.Count <= 0) //No Enemies in Spawn Queue
+        {
+            if(charManager.GetBadCharacterCount() <= 0) {   //Wave Cleared
+                StopGameLoop();
+                StartNextWave();
+            }
+            return;
+        }
+
         foreach (EnemySpawner eSpawn in EnemySpawnerList)
         {
             SpawnEnemy(eSpawn);
