@@ -24673,11 +24673,12 @@ MonoBehaviour:
   EnemyHealingFlat: 0.5
   PlayerHealingMaxHP: 5
   PlayerHealingFlat: 0
-  HeroHealingMaxHP: 2
+  HeroHealingMaxHP: 10
   HeroHealingFlat: 0
   HealingBursts: 8
   HealingDuration: 7
   Sound: {fileID: 3403182140830894424}
+  HealingBurstDelay: 0
   Entities: []
 --- !u!1 &6799789152776504120
 GameObject:

@@ -61,6 +61,7 @@ public class HealingSpell : MonoBehaviour
                 script.Heal((HeroHealingMaxHP * MaxHealth) + HeroHealingFlat);
             }*/
             Character characterScript = Entity.GetComponent<Character>();
+            if (characterScript == null) return;
             Debug.Log("Healing " + Entity.gameObject.name);
             float MaxHealth = characterScript.getMaxHealth();  //GetMaxHealth
             if (characterScript is EnemyCharacter)
