@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCharacter : MonoBehaviour, Character
 {
@@ -258,6 +259,7 @@ public class PlayerCharacter : MonoBehaviour, Character
                     npcCharacter.characterKilled(ownCharacter);
                 }
             }
+            SceneManager.LoadScene("GameOverMenu");
             return true;
         }
         return false;
