@@ -34,7 +34,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnemyInRange
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2259181036182737123}
@@ -155,7 +155,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2300245549067377979}
@@ -180,7 +180,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2300245549067377979}
@@ -347,25 +347,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: EnemySighted
+    m_Controller: {fileID: 0}
+  - m_Name: FoundEnemy
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: RandomWalk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: WalkingSpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -388,7 +388,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2300245549067377979}
@@ -416,7 +416,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnemyInRange
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -318237424694980964}
@@ -527,7 +527,7 @@ AnimatorStateTransition:
     m_ConditionEvent: RandomWalk
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2300245549067377979}
@@ -555,7 +555,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnemyInRange
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2259181036182737123}
@@ -619,7 +619,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2259181036182737123}
@@ -647,7 +647,7 @@ AnimatorStateTransition:
     m_ConditionEvent: EnemyInRange
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: EnemySighted
+    m_ConditionEvent: FoundEnemy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -318237424694980964}

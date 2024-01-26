@@ -210,13 +210,10 @@ public abstract class Navigation : MonoBehaviour
         bool didFollowPlayer = false;
         if (attackedCharacter is PlayerCharacter)
         {
-            didFollowPlayer = true;
             attackedCharacter = null;
-            ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
-            ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
-            navMeshAgent.isStopped = true;
-            navMeshAgent.ResetPath();
 
+            if (ownCharacter is HeroCharacter)
+                didFollowPlayer = true;
         }
         foreach (Character character in enemyList)
         {

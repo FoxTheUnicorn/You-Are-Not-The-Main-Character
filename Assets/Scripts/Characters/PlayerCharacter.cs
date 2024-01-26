@@ -172,6 +172,9 @@ public class PlayerCharacter : MonoBehaviour, Character
             delayedHealth += (maxHealth / 2f) * Time.deltaTime;
             if (delayedHealth > health) delayedHealth = health;
         }
+        Vector3 position = transform.position;
+        position.y = 0;
+        transform.position = position;
     }
 
     private void registerCharacterManager()

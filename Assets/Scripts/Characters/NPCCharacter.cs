@@ -35,6 +35,9 @@ public abstract class NPCCharacter : Navigation, Character
     {
         base.Update();
         animator.speed = getSlowDownFactor();
+        Vector3 position = transform.position;
+        position.y = 0;
+        transform.position = position;
     }
 
     public override void FixedUpdate()
