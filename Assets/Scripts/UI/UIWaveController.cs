@@ -18,12 +18,6 @@ public class UIWaveController : MonoBehaviour
     private Vector2 FillImageSize;
     private int WaveEnemyCount;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void InactiveWave()
     {
         FillImage.gameObject.SetActive(false);
@@ -43,7 +37,7 @@ public class UIWaveController : MonoBehaviour
 
     public void UpdateData(int RemainingEnemies)
     {
-        EnemyCountText.text = WaveEnemyCount + "/" + RemainingEnemies;
+        EnemyCountText.text = RemainingEnemies + "/" + WaveEnemyCount;
         AdjustEnemyRemainingBar(RemainingEnemies);
     }
 

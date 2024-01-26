@@ -264,7 +264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: cd1aca553b60e144fb609d7b0fecf4e0, type: 2}
   m_audioClip: {fileID: 8300000, guid: b3bde3e726618d44aa43831f05df5719, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.571
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2933,6 +2933,7 @@ GameObject:
   - component: {fileID: 1308133188}
   - component: {fileID: 1308133187}
   - component: {fileID: 1308133191}
+  - component: {fileID: 1308133192}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3043,6 +3044,18 @@ MonoBehaviour:
   - {fileID: 1705956476}
   - {fileID: 1670470644}
   - {fileID: 1812349350}
+--- !u!114 &1308133192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308133186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a35a8806337af44bb1778fddda88b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1316480921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,6 +3336,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Sound
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1308133192}
+        m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level1NEU
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1339687704
