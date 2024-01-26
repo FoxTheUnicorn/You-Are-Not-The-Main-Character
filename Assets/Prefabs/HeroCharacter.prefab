@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
   animator: {fileID: 309438540688380544}
-  regularEnemy: {fileID: 2036026934541988356}
+  regularEnemy: {fileID: 0}
 --- !u!54 &405965894730024414
 Rigidbody:
   m_ObjectHideFlags: 0
