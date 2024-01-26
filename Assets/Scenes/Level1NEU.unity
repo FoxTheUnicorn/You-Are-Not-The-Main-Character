@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -253,7 +253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -338,7 +338,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -412,7 +412,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -476,6 +476,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
   m_PrefabInstance: {fileID: 411076273}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &414695553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1245330195410350166, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
+  m_PrefabInstance: {fileID: 959367618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &469475373
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +539,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -608,7 +613,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -706,6 +711,78 @@ Transform:
   - {fileID: 469475374}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &602429234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9059188015700876711, guid: 50c28b283bea1744e91ad980d6755c79, type: 3}
+  m_PrefabInstance: {fileID: 1428107060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddaaa276a4e344d43aab5c5e8dad79bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &734869694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734869696}
+  - component: {fileID: 734869695}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &734869695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734869694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0426b12a37fc2604e983fbc7b63833ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnWaveOver:
+    m_PersistentCalls:
+      m_Calls: []
+  Player: {fileID: 414695553}
+  EnemiesParent: {fileID: 1887752234}
+  EnemySpawnerParent: {fileID: 469475374}
+  EnemySpawnerList: []
+  Waves:
+  - Enemies:
+    - EnemyType: {fileID: 3497727236674053020, guid: 47ee511a491ec8e41be7b99b91643433, type: 3}
+      Amount: 20
+  SpawnInterval: 1
+  WaveCooldown: 10
+  uiWaveController: {fileID: 1309564349}
+  WaveCounter: 0
+  currentWave:
+    Enemies: []
+--- !u!4 &734869696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734869694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &780564542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -716,7 +793,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -790,7 +867,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.26
+      value: 8.39
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -798,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -18.61
       objectReference: {fileID: 0}
     - target: {fileID: 557596632725463044, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -848,6 +925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8395089939208927583, guid: b2a15340d31aca04d94d32d19fcfb88e, type: 3}
+      propertyPath: uiHealthController
+      value: 
+      objectReference: {fileID: 602429234}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -868,7 +949,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -942,7 +1023,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1016,7 +1097,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1090,7 +1171,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1154,6 +1235,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
   m_PrefabInstance: {fileID: 1196986156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1309564349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3888567916226145238, guid: 50c28b283bea1744e91ad980d6755c79, type: 3}
+  m_PrefabInstance: {fileID: 1428107060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a2bfcd21bb38943a01579483434fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1428107060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1261,7 +1353,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1335,7 +1427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1409,7 +1501,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1499,7 +1591,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1573,7 +1665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1647,7 +1739,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3466210729358663173, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: minDistanceToPlayer
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5053306856474995580, guid: 20c35293d144d6448bca55c7216d41f1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1993,3 +2085,4 @@ SceneRoots:
   - {fileID: 578934206}
   - {fileID: 1428107060}
   - {fileID: 189758793}
+  - {fileID: 734869696}
