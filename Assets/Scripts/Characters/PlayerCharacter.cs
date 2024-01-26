@@ -236,4 +236,15 @@ public class PlayerCharacter : MonoBehaviour, Character
         }
         return false;
     }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public void heal(float amount)
+    {
+        health += (int)amount;
+        if (amount > maxHealth) amount = maxHealth;
+    }
 }

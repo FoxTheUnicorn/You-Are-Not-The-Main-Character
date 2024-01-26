@@ -12,4 +12,6 @@ public interface Character
     public Vector3 getPosition();
     public void hitEnemy(Character enemy);
     public bool receiveHit(Character enemy, int damage);
+    public float getMaxHealth();
+    public void heal(float amount);
 }
