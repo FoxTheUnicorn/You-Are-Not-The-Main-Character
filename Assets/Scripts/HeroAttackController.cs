@@ -7,6 +7,7 @@ public class HeroAttackController : MonoBehaviour
     private Animator HeroAnimator;
     [SerializeField] HitBox SlashHitbox;
     [SerializeField] private HeroCharacter ownCharacter;
+    public GameObject particlePrefab;
 
     public void SlashAttack()
     {
@@ -19,6 +20,8 @@ public class HeroAttackController : MonoBehaviour
             {
                 //Debug.Log("Hit " + collider.gameObject.name);
                 ownCharacter.hitEnemy(otherCharacter);
+                Vector3 closestPoint = collider.ClosestPoint(transform.position);
+                Instantiate(particlePrefab, closestPoint, Quaternion.identity);
             }
         }
     }

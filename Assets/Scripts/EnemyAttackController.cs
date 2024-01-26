@@ -6,6 +6,7 @@ public class EnemyAttackController : MonoBehaviour
 {
     [SerializeField] HitBox PunchHitbox;
     [SerializeField] private EnemyCharacter ownCharacter;
+    public GameObject particlePrefab;
 
     public void PunchAttack()
     {
@@ -16,6 +17,8 @@ public class EnemyAttackController : MonoBehaviour
             if ((((otherCharacter = (collider.GetComponent("HeroCharacter") as Character)) != null) || ((otherCharacter = (collider.GetComponent("PlayerCharacter") as Character)) != null)) && ownCharacter.getCanHit())
             {
                 ownCharacter.hitEnemy(otherCharacter);
+                Vector3 closestPoint = collider.ClosestPoint(transform.position);
+                Instantiate(particlePrefab, closestPoint, Quaternion.identity);
             }
         }
     }

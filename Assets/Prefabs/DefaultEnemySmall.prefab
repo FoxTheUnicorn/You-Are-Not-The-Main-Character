@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 6861969680752250215}
+  OnDeafeat:
+    m_PersistentCalls:
+      m_Calls: []
   animator: {fileID: 5558593620949126325}
   regularEnemy: {fileID: 877069007177398997}
 --- !u!195 &6861969680752250215
@@ -131,6 +134,10 @@ PrefabInstance:
       propertyPath: ownCharacter
       value: 
       objectReference: {fileID: 7038017865280401979}
+    - target: {fileID: 7296773885186356465, guid: a4ebec585ce58454eb744453a0b9051b, type: 3}
+      propertyPath: particlePrefab
+      value: 
+      objectReference: {fileID: 8966952692719652598, guid: 1bcba3b37a3e5a14782bbfaabdffac9b, type: 3}
     - target: {fileID: 7763393872425510785, guid: a4ebec585ce58454eb744453a0b9051b, type: 3}
       propertyPath: DespawnTime
       value: 1
