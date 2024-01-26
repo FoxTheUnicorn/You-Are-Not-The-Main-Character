@@ -54,7 +54,6 @@ public abstract class Navigation : MonoBehaviour
             ownCharacter.setAnimationPropertyBool("RandomWalk", false);
             ownCharacter.setAnimationPropertyBool("RandomRoar", false);
             ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
-            ownCharacter.setAnimationPropertyBool("EnemySighted", false);
             navMeshAgent.speed = initialNavMeshSpeed * slowDownFactor;
         }
     }
@@ -165,8 +164,6 @@ public abstract class Navigation : MonoBehaviour
         ownCharacter.setAnimationPropertyBool("RandomWalk", false);
         ownCharacter.setAnimationPropertyBool("RandomRoar", false);
         ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
-        ownCharacter.setAnimationPropertyBool("EnemySighted", false);
-        ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
         ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
     }
 
@@ -210,6 +207,17 @@ public abstract class Navigation : MonoBehaviour
     {
         float smallestRadius = attackRadius;
         Vector3 position = new Vector3(0f, 0f, 0f);
+        bool didFollowPlayer = false;
+        if (attackedCharacter is PlayerCharacter)
+        {
+            didFollowPlayer = true;
+            attackedCharacter = null;
+            ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
+            ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+            navMeshAgent.isStopped = true;
+            navMeshAgent.ResetPath();
+
+        }
         foreach (Character character in enemyList)
         {
             float radius = (character.getPosition() - transform.position).magnitude;
@@ -218,6 +226,34 @@ public abstract class Navigation : MonoBehaviour
                 smallestRadius = radius;
                 attackedCharacter = character;
             }
+        }
+        if (attackedCharacter == null && ownCharacter is HeroCharacter)
+        {
+            GameObject player = GameObject.Find("Player");
+            float abstand = (player.transform.position - transform.position).magnitude;
+            if (abstand < initialAttackRadius * 1.2f && abstand > initialAttackRadius * .5f)
+            {
+                attackedCharacter = player.GetComponent<PlayerCharacter>();
+            }
+            else if (didFollowPlayer)
+            {
+                navMeshAgent.isStopped = true;
+                navMeshAgent.ResetPath();
+                ownCharacter.setAnimationPropertyBool("EnemyInRange", false);
+                ownCharacter.setAnimationPropertyBool("FoundEnemy", false);
+                if (abstand >= initialAttackRadius * 1.2f)
+                {
+                    if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINRECTANGLE)
+                        statusTargetSetting = SETTINGTARGETWITHINRECTANGLE;
+                    else if (statusWanderingAroundAimlessly == WANDERINGAROUNDAIMLESSLYWITHINELLIPSE)
+                        statusTargetSetting = SETTINGTARGETWITHINELLIPSE;
+                    else
+                        statusTargetSetting = TARGETSETTINGINACTIVE;
+
+                }
+            }
+            //PlayerCharacter playerScript = player.GetComponent<PlayerCharacter>();
+
         }
         if (attackedCharacter != null)
         {
@@ -245,7 +281,7 @@ public abstract class Navigation : MonoBehaviour
             else
             {
                 navMeshAgent.SetDestination(attackedCharacter.getPosition());
-                ownCharacter.setAnimationPropertyBool("EnemySighted", true);
+                ownCharacter.setAnimationPropertyBool("FoundEnemy", true);
                 navMeshAgent.speed = initialNavMeshSpeed * navMeshSpeedRunMultiplier * slowDownFactor;
             }
         }
@@ -256,7 +292,7 @@ public abstract class Navigation : MonoBehaviour
         time += Time.deltaTime;
         attackRadius += attackRadiusInc;
         checkIfShouldAttackCounter++;
-        if ((attackedCharacter != null) && (attackedCharacter.getPosition() - transform.position).magnitude <= hitRadius)
+        if ((attackedCharacter != null) && (attackedCharacter.getPosition() - transform.position).magnitude <= hitRadius && (!(ownCharacter is HeroCharacter) || !(attackedCharacter is PlayerCharacter)))
         {
             navMeshAgent.isStopped = true;
             navMeshAgent.ResetPath();
