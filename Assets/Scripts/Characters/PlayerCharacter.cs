@@ -41,6 +41,24 @@ public class PlayerCharacter : MonoBehaviour, Character
         return transform.position;
     }
 
+    public Vector3 getClosestEnemyPosition()
+    {
+        Vector3 closestEnemyPosition = new Vector3(100000f, 100000f, 100000f);
+        float closestDistance = 1000000f;
+        foreach(Character character in enemyList)
+        {
+                float distance = (transform.position - character.getPosition()).magnitude;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemyPosition = character.getPosition();
+                }
+
+            
+        }
+        return closestEnemyPosition;
+    }
+
     private void MovePlayer()
     {
         if (health <= 0) return;
