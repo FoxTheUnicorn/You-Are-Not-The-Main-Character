@@ -7,7 +7,7 @@ public class PlayerAbilityController : MonoBehaviour
 {
     [SerializeField] List<InternalAbility> abilities = new List<InternalAbility>();
     [SerializeField] GameObject SpellCollection;
-    [SerializeField] float SpellHeight = 0.1f;
+    [SerializeField] float SpellHeight = 0.15f;
     [SerializeField] ParticleSystem poof;
     private PlayerCharacter player;
 
